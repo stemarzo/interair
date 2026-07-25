@@ -147,6 +147,24 @@
     padding: 28px 12px; border: 1px dashed var(--sky-line); border-radius: 6px;
   }
 
+  /* ---- rotta (mappa stilizzata) ---- */
+  .route-wrap{
+    border: 1px solid var(--sky-line); border-radius: 8px; padding: 6px 4px 2px; margin-bottom: 28px;
+    background: radial-gradient(ellipse 420px 220px at 50% 30%, rgba(201,154,68,0.06), transparent 70%);
+  }
+  .route-map{ width: 100%; height: auto; display:block; }
+  .route-map .grid-line{ stroke: var(--sky-line); stroke-width: 1; }
+  .route-map .leg{ fill:none; stroke: var(--brass); stroke-width: 1.6; stroke-linecap: round; }
+  .route-map .leg-return{ fill:none; stroke: var(--ink-soft); stroke-width: 1.3; stroke-linecap: round; stroke-dasharray: 2 5; }
+  .route-map .stop-dot{ fill: var(--sky); stroke: var(--brass); stroke-width: 2; }
+  .route-map .home-mark{ fill: var(--sky); stroke: var(--parchment); stroke-width: 1.6; }
+  .route-map text{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.04em; fill: var(--ink-soft); }
+  .route-map text.stop-label{ fill: var(--parchment); font-weight: 600; }
+  .route-caption{
+    text-align:center; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.04em;
+    color: var(--ink-faint); margin: 2px 0 10px;
+  }
+
   footer.endmark{
     text-align:center; margin-top: 50px; font-family: var(--mono); font-size: 0.66rem;
     letter-spacing: 0.06em; color: var(--ink-faint);
@@ -242,6 +260,33 @@
       <h2>Programma</h2>
       <span class="block-note">3 – 21 agosto 2026</span>
     </div>
+
+    <div class="route-wrap">
+      <svg class="route-map" viewBox="0 0 600 300" role="img" aria-label="Rotta del viaggio: Milano, Norvegia, Spagna del nord">
+        <line class="grid-line" x1="0" y1="55" x2="600" y2="55" opacity="0.5"/>
+        <line class="grid-line" x1="0" y1="130" x2="600" y2="130" opacity="0.5"/>
+        <line class="grid-line" x1="0" y1="205" x2="600" y2="205" opacity="0.5"/>
+        <line class="grid-line" x1="0" y1="270" x2="600" y2="270" opacity="0.5"/>
+
+        <!-- rientro (tratteggiato): Spagna del nord -> Milano -->
+        <path class="leg-return" d="M 150,205 Q 230,270 300,225"/>
+        <!-- Milano -> Norvegia -->
+        <path class="leg" d="M 300,225 Q 400,145 315,50"/>
+        <!-- Norvegia -> Spagna del nord -->
+        <path class="leg" d="M 315,50 Q 190,95 150,205"/>
+
+        <circle class="home-mark" cx="300" cy="225" r="4.5" transform="rotate(45 300 225)" />
+        <text x="300" y="248" text-anchor="middle">Milano</text>
+
+        <circle class="stop-dot" cx="315" cy="50" r="6"/>
+        <text class="stop-label" x="315" y="32" text-anchor="middle">Norvegia</text>
+
+        <circle class="stop-dot" cx="150" cy="205" r="6"/>
+        <text class="stop-label" x="150" y="188" text-anchor="middle">Spagna del nord</text>
+      </svg>
+    </div>
+    <p class="route-caption">rotta indicativa, non in scala — tratteggio = rientro</p>
+
     <div class="itinerary">
       <div class="stop">
         <span class="stop-day">Tappa 1</span>
