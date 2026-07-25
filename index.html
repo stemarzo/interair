@@ -1,3 +1,11 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#12141c">
+<title>InterAir — Diario di viaggio</title>
 <style>
   :root{
     --sky:#12141c; --sky-deep:#0a0b10; --sky-line: rgba(201,154,68,0.22);
@@ -18,32 +26,60 @@
     color: var(--parchment);
     font-family: var(--serif);
     -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
   }
-  .page{ max-width: 720px; margin: 0 auto; padding: 56px 22px 90px; }
+  .page{ max-width: 720px; margin: 0 auto; padding: 40px 18px 70px; }
+  @media (min-width: 640px){ .page{ padding: 56px 22px 90px; } }
 
-  header.masthead{ text-align:center; margin-bottom: 8px; }
+  header.masthead{ text-align:center; margin-bottom: 22px; }
   .eyebrow{
-    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--brass); margin: 0 0 14px;
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--brass); margin: 0 0 12px;
   }
   h1.title{
-    font-size: clamp(2rem, 6vw, 2.9rem); font-weight: 600; margin: 0 0 10px; line-height: 1.08;
+    font-size: clamp(2rem, 9vw, 2.9rem); font-weight: 600; margin: 0 0 10px; line-height: 1.08;
     text-wrap: balance; letter-spacing: 0.01em;
   }
   .subtitle{
-    font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.06em; color: var(--ink-soft);
+    font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.06em; color: var(--ink-soft);
     margin: 0;
   }
   .masthead-rule{
-    width: 64px; height: 1px; margin: 26px auto 0; border: none;
+    width: 56px; height: 1px; margin: 22px auto 0; border: none;
     background: linear-gradient(90deg, transparent, var(--brass), transparent);
   }
   .preview-note{
-    text-align:center; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.04em;
-    color: var(--ink-faint); font-style: normal; margin: 18px 0 54px;
+    text-align:center; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.03em;
+    color: var(--ink-faint); font-style: normal; margin: 0 0 30px;
   }
 
-  .timeline{ position: relative; display:flex; flex-direction:column; gap: 46px; }
+  /* ---- tab nav ---- */
+  nav.tabs{
+    display:flex; gap: 4px; background: rgba(255,255,255,0.04); border: 1px solid var(--sky-line);
+    border-radius: 11px; padding: 4px; margin: 0 0 32px; position: sticky; top: 10px; z-index: 5;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  }
+  nav.tabs button{
+    flex: 1; appearance:none; border:none; background:none; cursor:pointer; font: inherit;
+    font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.09em; text-transform: uppercase;
+    color: var(--ink-soft); padding: 11px 10px; border-radius: 8px; transition: color .15s, background .15s;
+  }
+  nav.tabs button.active{ color: var(--sky); background: var(--brass); font-weight: 600; }
+  nav.tabs button:focus-visible{ outline: 2px solid var(--brass); outline-offset: 2px; }
+
+  .tab-panel{ display:none; }
+  .tab-panel.active{ display:block; animation: fade .25s ease; }
+  @media (prefers-reduced-motion: reduce){ .tab-panel.active{ animation:none; } }
+  @keyframes fade{ from{ opacity:0; transform: translateY(4px);} to{ opacity:1; transform:none; } }
+
+  .block-head{ display:flex; align-items:baseline; gap: 12px; margin-bottom: 20px; }
+  .block-head h2{ font-size: 1.4rem; font-weight: 600; margin: 0; letter-spacing: 0.01em; }
+  .block-head .block-note{
+    font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.03em; color: var(--ink-faint);
+  }
+
+  /* ---- diario / timeline ---- */
+  .timeline{ position: relative; display:flex; flex-direction:column; gap: 34px; }
   .timeline::before{
     content:""; position:absolute; left: 5px; top: 10px; bottom: 10px; width: 1px;
     background: linear-gradient(180deg, var(--sky-line), var(--sky-line) 85%, transparent);
@@ -58,95 +94,67 @@
   }
   @media (max-width: 560px){ .entry::before{ display:none; } }
 
-  .stamp{
-    display:flex; flex-wrap: wrap; align-items: baseline; gap: 10px 14px; margin-bottom: 14px;
-  }
+  .stamp{ display:flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px; margin-bottom: 12px; }
   .stamp .day{
-    font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--brass); border: 1px solid var(--brass-soft); border-radius: 3px; padding: 3px 8px;
   }
-  .stamp .date{
-    font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; color: var(--ink-soft);
-  }
-  .stamp .place{
-    font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; color: var(--teal);
-  }
+  .stamp .date{ font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.05em; color: var(--ink-soft); }
+  .stamp .place{ font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.05em; color: var(--teal); }
   .stamp .place::before{ content: "· "; color: var(--ink-faint); }
 
   .card{
     background: var(--parchment); color: var(--ink-on-paper);
-    border-radius: 5px; padding: 26px 26px 24px;
+    border-radius: 5px; padding: 20px 18px 20px;
     box-shadow: 0 1px 0 var(--parchment-edge), 0 18px 40px -22px rgba(0,0,0,0.55);
   }
-  .card h2{
-    font-size: 1.34rem; font-weight: 600; margin: 0 0 12px; text-wrap: balance;
-  }
-  .card p{
-    font-size: 1rem; line-height: 1.62; margin: 0 0 14px; max-width: 62ch; color: var(--ink-on-paper);
-  }
+  @media (min-width: 480px){ .card{ padding: 26px 26px 24px; } }
+  .card h2{ font-size: 1.24rem; font-weight: 600; margin: 0 0 12px; text-wrap: balance; }
+  .card p{ font-size: 1rem; line-height: 1.62; margin: 0 0 14px; max-width: 62ch; color: var(--ink-on-paper); }
   .card p:last-of-type{ margin-bottom: 0; }
-  .card p.lede::first-letter{
-    font-size: 1.5em; font-family: var(--serif); color: var(--ink-on-paper-soft);
-  }
+  .card p.lede::first-letter{ font-size: 1.5em; font-family: var(--serif); color: var(--ink-on-paper-soft); }
 
   .photostrip{
-    display:flex; gap: 10px; overflow-x: auto; margin: 2px -4px 18px; padding: 4px;
+    display:flex; gap: 9px; overflow-x: auto; margin: 2px -4px 16px; padding: 4px;
     scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
   }
   .photostrip::-webkit-scrollbar{ height: 5px; }
   .photostrip::-webkit-scrollbar-thumb{ background: var(--parchment-edge); border-radius: 3px; }
   .photo{
-    flex: 0 0 auto; width: 230px; height: 168px; border-radius: 3px; overflow:hidden;
+    flex: 0 0 auto; width: min(78vw, 230px); height: 168px; border-radius: 3px; overflow:hidden;
     position: relative; scroll-snap-align: start; background: var(--parchment-dim);
   }
   .photo svg{ width:100%; height:100%; display:block; }
+  .photo img{ width:100%; height:100%; display:block; object-fit: cover; }
   .photo .cap{
     position:absolute; left:0; right:0; bottom:0; padding: 6px 9px;
     font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.04em; color: var(--parchment);
     background: linear-gradient(0deg, rgba(20,16,6,0.55), transparent);
   }
 
-  footer.endmark{
-    text-align:center; margin-top: 60px; font-family: var(--mono); font-size: 0.68rem;
-    letter-spacing: 0.08em; color: var(--ink-faint);
-  }
-  footer.endmark .mark{ color: var(--brass); }
-
-  nav.jump{ display:flex; justify-content:center; gap: 10px; margin: 0 0 54px; }
-  nav.jump a{
-    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--ink-soft); text-decoration:none; border: 1px solid var(--sky-line); border-radius: 999px;
-    padding: 6px 14px; transition: color .15s, border-color .15s;
-  }
-  nav.jump a:hover, nav.jump a:focus-visible{ color: var(--brass); border-color: var(--brass-soft); }
-
-  section.block{ margin-bottom: 64px; }
-  .block-head{ display:flex; align-items:baseline; gap: 12px; margin-bottom: 22px; }
-  .block-head h2{
-    font-size: 1.5rem; font-weight: 600; margin: 0; letter-spacing: 0.01em;
-  }
-  .block-head .block-note{
-    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.04em; color: var(--ink-faint);
-  }
-
+  /* ---- programma / itinerary ---- */
   .itinerary{ display:flex; flex-direction:column; }
-  .stop{
-    display:flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px;
-    padding: 14px 4px; border-bottom: 1px solid var(--sky-line);
-  }
+  .stop{ display:flex; flex-wrap: wrap; align-items: baseline; gap: 3px 16px; padding: 14px 4px; border-bottom: 1px solid var(--sky-line); }
   .stop:first-child{ border-top: 1px solid var(--sky-line); }
   .stop .stop-day{
-    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--brass); width: 84px; flex: none;
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--brass); width: 78px; flex: none;
   }
-  .stop .stop-place{ font-size: 1.06rem; flex: 1 1 200px; }
-  .stop .stop-note{ font-family: var(--mono); font-size: 0.72rem; color: var(--ink-soft); }
+  .stop .stop-place{ font-size: 1.02rem; flex: 1 1 200px; }
+  .stop .stop-note{ font-family: var(--mono); font-size: 0.7rem; color: var(--ink-soft); }
   .itinerary-empty{
-    font-family: var(--mono); font-size: 0.78rem; color: var(--ink-faint); text-align:center;
-    padding: 30px 12px; border: 1px dashed var(--sky-line); border-radius: 6px;
+    font-family: var(--mono); font-size: 0.76rem; color: var(--ink-faint); text-align:center;
+    padding: 28px 12px; border: 1px dashed var(--sky-line); border-radius: 6px;
   }
-</style>
 
+  footer.endmark{
+    text-align:center; margin-top: 50px; font-family: var(--mono); font-size: 0.66rem;
+    letter-spacing: 0.06em; color: var(--ink-faint);
+  }
+  footer.endmark .mark{ color: var(--brass); }
+</style>
+</head>
+<body>
 <div class="page">
 
   <header class="masthead">
@@ -156,12 +164,80 @@
     <hr class="masthead-rule">
   </header>
 
-  <nav class="jump">
-    <a href="#programma">Programma</a>
-    <a href="#diario">Diario</a>
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="diario">Diario</button>
+    <button class="tab-btn" data-tab="programma">Programma</button>
   </nav>
 
-  <section class="block" id="programma">
+  <!-- ===================== DIARIO ===================== -->
+  <section class="tab-panel active" id="tab-diario">
+    <div class="block-head">
+      <h2>Diario</h2>
+      <span class="block-note">una voce a sera</span>
+    </div>
+    <p class="preview-note">anteprima di stile — il primo giorno vero sostituirà questo esempio</p>
+
+    <div class="timeline">
+
+      <article class="entry">
+        <div class="stamp">
+          <span class="day">Giorno 1</span>
+          <span class="date">mar 2026</span>
+          <span class="place">Aeroporto, partenza</span>
+        </div>
+        <div class="card">
+          <h2>Si parte</h2>
+          <div class="photostrip">
+            <div class="photo">
+              <svg viewBox="0 0 230 168" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#8fa9c9"/><stop offset="1" stop-color="#3f5b7a"/>
+                  </linearGradient>
+                  <filter id="n1"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0"/></filter>
+                </defs>
+                <rect width="230" height="168" fill="url(#g1)"/>
+                <rect width="230" height="168" filter="url(#n1)"/>
+              </svg>
+              <span class="cap">foto 1</span>
+            </div>
+            <div class="photo">
+              <svg viewBox="0 0 230 168" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <linearGradient id="g2" x1="0" y1="1" x2="1" y2="0">
+                    <stop offset="0" stop-color="#c9a25c"/><stop offset="1" stop-color="#7a5a3f"/>
+                  </linearGradient>
+                  <filter id="n2"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0"/></filter>
+                </defs>
+                <rect width="230" height="168" fill="url(#g2)"/>
+                <rect width="230" height="168" filter="url(#n2)"/>
+              </svg>
+              <span class="cap">foto 2</span>
+            </div>
+            <div class="photo">
+              <svg viewBox="0 0 230 168" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#6f9a8f"/><stop offset="1" stop-color="#2f4a44"/>
+                  </linearGradient>
+                  <filter id="n3"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0"/></filter>
+                </defs>
+                <rect width="230" height="168" fill="url(#g3)"/>
+                <rect width="230" height="168" filter="url(#n3)"/>
+              </svg>
+              <span class="cap">foto 3</span>
+            </div>
+          </div>
+          <p class="lede">Valigia chiusa all'ultimo, come sempre. In aeroporto con largo anticipo e la solita ansia di aver dimenticato qualcosa — probabilmente il caricabatterie.</p>
+          <p>Imbarco senza intoppi, un ultimo caffè prima di spegnere il telefono. Da domani il resoconto sarà tutto qui, una voce a sera.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===================== PROGRAMMA ===================== -->
+  <section class="tab-panel" id="tab-programma">
     <div class="block-head">
       <h2>Programma</h2>
       <span class="block-note">tappa per tappa</span>
@@ -180,74 +256,20 @@
     </div>
   </section>
 
-  <section class="block" id="diario">
-    <div class="block-head">
-      <h2>Diario</h2>
-      <span class="block-note">una voce a sera</span>
-    </div>
-    <p class="preview-note">anteprima di stile — il primo giorno vero sostituirà questo esempio</p>
-
-    <div class="timeline">
-
-    <article class="entry">
-      <div class="stamp">
-        <span class="day">Giorno 1</span>
-        <span class="date">mar 2026</span>
-        <span class="place">Aeroporto, partenza</span>
-      </div>
-      <div class="card">
-        <h2>Si parte</h2>
-        <div class="photostrip">
-          <div class="photo">
-            <svg viewBox="0 0 230 168" preserveAspectRatio="xMidYMid slice">
-              <defs>
-                <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="#8fa9c9"/><stop offset="1" stop-color="#3f5b7a"/>
-                </linearGradient>
-                <filter id="n1"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0"/></filter>
-              </defs>
-              <rect width="230" height="168" fill="url(#g1)"/>
-              <rect width="230" height="168" filter="url(#n1)"/>
-            </svg>
-            <span class="cap">foto 1</span>
-          </div>
-          <div class="photo">
-            <svg viewBox="0 0 230 168" preserveAspectRatio="xMidYMid slice">
-              <defs>
-                <linearGradient id="g2" x1="0" y1="1" x2="1" y2="0">
-                  <stop offset="0" stop-color="#c9a25c"/><stop offset="1" stop-color="#7a5a3f"/>
-                </linearGradient>
-                <filter id="n2"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0"/></filter>
-              </defs>
-              <rect width="230" height="168" fill="url(#g2)"/>
-              <rect width="230" height="168" filter="url(#n2)"/>
-            </svg>
-            <span class="cap">foto 2</span>
-          </div>
-          <div class="photo">
-            <svg viewBox="0 0 230 168" preserveAspectRatio="xMidYMid slice">
-              <defs>
-                <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0" stop-color="#6f9a8f"/><stop offset="1" stop-color="#2f4a44"/>
-                </linearGradient>
-                <filter id="n3"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0"/></filter>
-              </defs>
-              <rect width="230" height="168" fill="url(#g3)"/>
-              <rect width="230" height="168" filter="url(#n3)"/>
-            </svg>
-            <span class="cap">foto 3</span>
-          </div>
-        </div>
-        <p class="lede">Valigia chiusa all'ultimo, come sempre. In aeroporto con largo anticipo e la solita ansia di aver dimenticato qualcosa — probabilmente il caricabatterie.</p>
-        <p>Imbarco senza intoppi, un ultimo caffè prima di spegnere il telefono. Da domani il resoconto sarà tutto qui, una voce a sera.</p>
-      </div>
-    </article>
-
-    </div>
-  </section>
-
   <footer class="endmark">
     <span class="mark">✳</span> aggiornato ogni sera, finché dura il viaggio
   </footer>
 
 </div>
+
+<script>
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b === btn));
+      const target = btn.dataset.tab;
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'tab-' + target));
+    });
+  });
+</script>
+</body>
+</html>
