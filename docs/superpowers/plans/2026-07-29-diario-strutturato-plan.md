@@ -875,6 +875,34 @@ Expected: `main -> main` aggiornato senza errori
 
 ---
 
+## Amendment (post-Task 4, dopo verifica utente)
+
+Dopo aver visto il Task 4 funzionante nel browser, l'utente ha chiesto una correzione: il tab
+**Diario** non deve più essere un elenco compatto cliccabile che apre il popup piano/logistica —
+deve tornare a essere una timeline di note/card in stile diario originale (una card per giorno,
+con foto e testo quando scritti), e il contenuto piano/logistica deve restare **solo** nel popup
+agganciato al tab **Programma**, senza comparire nel Diario. Corollario: il popup non mostra più
+una sezione "Diario della serata" — è solo stemma + logistica + piano, uso esclusivo di Programma.
+
+Cambiamenti concreti (Task 4b):
+- `app.js`: `renderDiarioList()` → rinominata `renderDiarioTimeline()`, produce markup
+  `<article class="entry">`/`<article class="entry entry-pending">` (stamp + card con
+  photostrip/paragrafi per i giorni scritti, oppure stamp + nota "non ancora scritto" per i
+  giorni non scritti), niente più click/bottoni. `renderDayModal()` perde la sezione "Diario
+  della serata" (stamp + logistica + piano soltanto). L'helper `excerpt()` non serve più
+  (nessun estratto troncato da mostrare) e va rimosso insieme al suo export.
+- `style.css`: rimuove `.diario-list`/`.day-row` e la loro media query (non più usati),
+  rimuove `.diary-pending` (non più referenziata dal modal), aggiunge una sola regola nuova
+  `.entry-pending-note` per la nota dei giorni non scritti (l'`.entry`/`.card`/`.photostrip`
+  esistenti bastano per i giorni scritti, nessuna modifica lì).
+- `index.html`: il contenitore del tab Diario torna `<div class="timeline"
+  id="diario-timeline"></div>` (era `.diario-list`/`#diario-list`); la nota sotto il titolo
+  "Diario" torna simile all'originale ("una voce a sera" invece di "21 giorni · clicca per
+  aprire").
+
+Il resto del Task 4 (tab Programma cliccabile, popup, deep-link via hash, mappa SVG) resta
+invariato e già approvato.
+
 ## Auto-verifica del piano
 
 - **Copertura spec**: architettura (Task 1-4 coprono i 4 file), modello dati (Task 1), le tre
