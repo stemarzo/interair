@@ -3,6 +3,12 @@
 const DOW_IT = ['dom', 'lun', 'mar', 'mer', 'gio', 'ven', 'sab'];
 const MESI_IT = ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic'];
 
+function escapeHTML(str) {
+  return String(str).replace(/[&<>"']/g, ch => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[ch]));
+}
+
 function parseISODate(iso) {
   const [y, m, d] = iso.split('-').map(Number);
   return new Date(y, m - 1, d); // orario locale: evita lo shift di un giorno che new Date(iso) darebbe (parse UTC)
@@ -29,7 +35,7 @@ function clampDayNumber(n, totalDays) {
 }
 
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { parseISODate, formatDayHeader, getPlanForDay, getStopForDay, clampDayNumber };
+  module.exports = { escapeHTML, parseISODate, formatDayHeader, getPlanForDay, getStopForDay, clampDayNumber };
 }
 
 (function () {
@@ -46,19 +52,19 @@ if (typeof module !== 'undefined' && module.exports) {
         let photostrip = '';
         if (day.diario.foto && day.diario.foto.length) {
           photostrip = `<div class="photostrip">` + day.diario.foto.map((src, i) =>
-            `<div class="photo"><div class="frame"><img src="${src}" alt="Foto ${i + 1} — ${day.tappa}" loading="lazy"></div></div>`
+            `<div class="photo"><div class="frame"><img src="${src}" alt="Foto ${i + 1} — ${escapeHTML(day.tappa)}" loading="lazy"></div></div>`
           ).join('') + `</div>`;
         }
-        const paragraphs = day.diario.paragrafi.map((p, i) => `<p class="${i === 0 ? 'lede' : ''}">${p}</p>`).join('');
+        const paragraphs = day.diario.paragrafi.map((p, i) => `<p class="${i === 0 ? 'lede' : ''}">${escapeHTML(p)}</p>`).join('');
         article.innerHTML = `
           <div class="card">
             <div class="stamp">
               <span class="day">Giorno ${day.n}</span>
               <span class="date">${label}</span>
-              <span class="place">${day.tappa}</span>
+              <span class="place">${escapeHTML(day.tappa)}</span>
             </div>
             ${photostrip}
-            <h2>${day.diario.titolo}</h2>
+            <h2>${escapeHTML(day.diario.titolo)}</h2>
             ${paragraphs}
           </div>
         `;
@@ -68,7 +74,7 @@ if (typeof module !== 'undefined' && module.exports) {
             <div class="stamp">
               <span class="day">Giorno ${day.n}</span>
               <span class="date">${label}</span>
-              <span class="place">${day.tappa}</span>
+              <span class="place">${escapeHTML(day.tappa)}</span>
             </div>
             <p class="entry-pending-note">non ancora scritto</p>
           </div>
@@ -93,9 +99,12 @@ if (typeof module !== 'undefined' && module.exports) {
   }
 
   function planMetaRow(item) {
-    const parts = [item.difficolta, item.tempo,
-      item.prenotazione ? `prenotazione: ${item.prenotazione}` : null,
-      item.costo].filter(Boolean);
+    const parts = [
+      item.difficolta ? escapeHTML(item.difficolta) : null,
+      item.tempo ? escapeHTML(item.tempo) : null,
+      item.prenotazione ? `prenotazione: ${escapeHTML(item.prenotazione)}` : null,
+      item.costo ? escapeHTML(item.costo) : null
+    ].filter(Boolean);
     return parts.map(p => `<span>${p}</span>`).join('');
   }
 
@@ -109,21 +118,21 @@ if (typeof module !== 'undefined' && module.exports) {
       <div class="stamp">
         <span class="day">Giorno ${day.n}</span>
         <span class="date">${label}</span>
-        <span class="place">${day.tappa}</span>
+        <span class="place">${escapeHTML(day.tappa)}</span>
       </div>
     `;
 
     if (day.logistica.length) {
       html += `<p class="modal-section-title">Logistica</p><ul class="logistica-list">`
-        + day.logistica.map(l => `<li>${l}</li>`).join('') + `</ul>`;
+        + day.logistica.map(l => `<li>${escapeHTML(l)}</li>`).join('') + `</ul>`;
     }
 
     if (plan) {
       html += `<p class="modal-section-title">Piano</p><div class="plan-list">`
         + plan.map(item => `
           <div class="plan-item">
-            <div class="plan-name">${item.nome}</div>
-            <p class="plan-detail">${item.dettaglio}</p>
+            <div class="plan-name">${escapeHTML(item.nome)}</div>
+            <p class="plan-detail">${escapeHTML(item.dettaglio)}</p>
             <div class="plan-meta">${planMetaRow(item)}</div>
           </div>
         `).join('') + `</div>`;
@@ -142,7 +151,7 @@ if (typeof module !== 'undefined' && module.exports) {
     renderDayModal(n);
     const modal = document.getElementById('day-modal');
     if (!modal.open) modal.showModal();
-    location.hash = `giorno-${n}`;
+    history.replaceState(null, '', `#giorno-${n}`);
   }
 
   function closeDayModal() {

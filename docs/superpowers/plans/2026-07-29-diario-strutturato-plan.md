@@ -823,26 +823,24 @@ Checklist da confermare a occhio (nessun test automatico per il DOM, coerente co
 "Verifica" dello spec — se è disponibile lo strumento di automazione browser, usarlo per
 navigare ed eseguire questi controlli invece di farlo a mano):
 
-- Tab **Diario** attivo di default, mostra 21 righe, "Giorno 1" ... "Giorno 21", tutte con
-  etichetta "non ancora scritto" (nessun `diario` è ancora popolato)
-- Click su una riga (es. "Giorno 4") apre il popup: stemma con "Giorno 4 · gio 6 ago 2026 ·
-  Bergen", sezione Logistica con l'alloggio, sezione Piano con le 5 attività di
-  `bergen-6ago` (Fløyen, Vidden, Ulriken, Stoltzekleiven, piano B), sezione "Diario della
-  serata" con il placeholder tratteggiato
-- Sul giorno 1 il pulsante "← giorno prec." è disabilitato; sul giorno 21 "giorno succ. →" è
-  disabilitato
-- Click su "giorno succ. →" ripetutamente attraversa correttamente tutti i 21 giorni senza
-  errori in console
-- Chiusura del popup: pulsante ✕, click fuori dal riquadro (sul backdrop), e tasto Esc
-  funzionano tutti e tre
-- Tab **Programma**: la mappa e la lista tappe sono invariate nell'aspetto; click su
-  "Eidfjord (Norvegia)" apre il popup del Giorno 5 ("Bergen → Eidfjord", piano
-  `eidfjord-transfer-7ago`); click su "In camper, Spagna del nord" apre il Giorno 12
-  ("Bilbao → San Sebastián")
-- Aprire l'URL con `index.html#giorno-16` direttamente (o incollare `#giorno-16` nella barra
-  indirizzi e ricaricare): il popup del Giorno 16 (Potes, Fuente Dé) si apre da solo al
-  caricamento
-- Restringere la finestra a ~375px di larghezza: tab nav, elenco Diario e popup restano
+- Tab **Diario** attivo di default, mostra una timeline in ordine cronologico inverso (il
+  giorno più recente in alto) fatta di `<article class="entry">`, uno per giorno, ma solo per
+  i giorni `1..giornoCorrente` (attualmente `giornoCorrente = 3`, quindi compaiono solo Giorno
+  3, Giorno 2, Giorno 1, in quest'ordine) — i giorni oltre `giornoCorrente` non vengono
+  renderizzati affatto
+- Le card del Diario NON sono cliccabili e non aprono mai il popup: un giorno con `diario`
+  valorizzato mostra, dentro un unico blocco `.card` a rilievo, una photostrip in stile
+  polaroid (se ci sono foto) + titolo + paragrafi; un giorno con `diario: null` mostra, dentro
+  lo stesso tipo di `.card` a rilievo, solo lo stemma + "non ancora scritto"
+- Il popup (`<dialog id="day-modal">`) si apre SOLO dalle righe `.stop` cliccabili del tab
+  Programma (tutte e 8, per tutti i 21 giorni, non influenzate da `giornoCorrente`) e mostra
+  SOLO stemma + Logistica + Piano — nessun testo di diario o foto compare mai nel popup
+- Navigazione nel popup: i pulsanti prec./succ. attraversano tutti i 21 giorni (disabilitati
+  rispettivamente sul giorno 1 e sul giorno 21); chiusura via pulsante ✕, click sul backdrop,
+  o tasto Esc; l'hash dell'URL (`#giorno-N`) resta sincronizzato tramite
+  `history.replaceState` (nessun accumulo di voci nella cronologia) e aprire
+  `index.html#giorno-16` direttamente carica la pagina con il popup di quel giorno già aperto
+- Restringere la finestra a ~375px di larghezza: tab nav, timeline Diario e popup restano
   leggibili, nessun overflow orizzontale della pagina
 - Aprire la console del browser durante tutti i passaggi sopra: nessun errore JS
 
@@ -1068,7 +1066,9 @@ altro file cambia.
 - **Placeholder**: nessuno — ogni step ha codice completo e reale, nessun "TBD" o "simile al
   Task N" lasciato all'implementatore.
 - **Coerenza tipi/nomi**: `days`/`planBlocks`/`stops` (Task 1) → stessi nomi e shape usati in
-  `app.js` (Task 3) → stessi id DOM (`diario-list`, `day-modal`, `day-modal-body`,
-  `modal-close`, `modal-prev`, `modal-next`) usati in `index.html` (Task 4). `data-start-day`
-  sulle `.stop` (Task 4) corrisponde a `dayRange[0]` di ogni tappa in `stops` (Task 1):
-  1, 3, 5, 9, 10, 11, 12, 21 — verificato a mano contro l'array.
+  `app.js` (Task 3) → stessi id DOM usati in `index.html` (Task 4): `diario-timeline`
+  (rinominato da `diario-list` nell'Amendment 1), `day-modal`, `day-modal-body`, `modal-close`,
+  `modal-prev`, `modal-next`. Il corpo del popup (`day-modal-body`) contiene solo markup di
+  stemma/logistica/piano — mai contenuto di diario, rimosso dal popup nell'Amendment (Task 4b).
+  `data-start-day` sulle `.stop` (Task 4) corrisponde a `dayRange[0]` di ogni tappa in `stops`
+  (Task 1): 1, 3, 5, 9, 10, 11, 12, 21 — verificato a mano contro l'array.

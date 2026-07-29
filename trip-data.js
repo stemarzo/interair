@@ -148,7 +148,7 @@ const days = [
     logistica: ["Atterraggio a Barcellona 00:55, notte breve", "Volo Vueling 09:10 → 10:25 (Barcellona → Bilbao)"],
     planBlock: null, diario: null },
   { n: 12, date: "2026-08-14", tappa: "Bilbao → San Sebastián",
-    logistica: ["Ritiro camper a Zamudio (Bilbao), ore 15:00 — Roadsurfer, prenotazione 3283930513", "Pernottamento: area camper San Sebastián (Camperstop Donosti)"],
+    logistica: ["Ritiro camper a Zamudio (Bilbao), ore 15:00 — già prenotato (Roadsurfer)", "Pernottamento: area camper San Sebastián (Camperstop Donosti)"],
     planBlock: "camper-14ago", diario: null },
   { n: 13, date: "2026-08-15", tappa: "San Sebastián e costa basca",
     logistica: ["Pernottamento: Santander o Castro Urdiales"], planBlock: "camper-15ago", diario: null },
@@ -165,7 +165,7 @@ const days = [
   { n: 19, date: "2026-08-21", tappa: "Gijón, Cudillero",
     logistica: ["Pernottamento: zona Santander/Castro Urdiales"], planBlock: "camper-21ago", diario: null },
   { n: 20, date: "2026-08-22", tappa: "Riconsegna camper, Bilbao",
-    logistica: ["Riconsegna camper a Zamudio, ore 12:00 — Roadsurfer, prenotazione 3283930513"], planBlock: "bilbao-extra", diario: null },
+    logistica: ["Riconsegna camper a Zamudio, ore 12:00 — già prenotato (Roadsurfer)"], planBlock: "bilbao-extra", diario: null },
   { n: 21, date: "2026-08-23", tappa: "Rientro a Milano",
     logistica: ["Volo Vueling 17:35 → 19:30 (Bilbao → Milano)"], planBlock: "bilbao-extra", diario: null }
 ];

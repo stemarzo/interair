@@ -2,7 +2,6 @@
     --sky:#12141c; --sky-deep:#0a0b10; --sky-line: rgba(201,154,68,0.22);
     --parchment:#ece3cf; --parchment-dim:#ddd0a4; --parchment-edge: rgba(20,16,6,0.14);
     --brass:#c99a44; --brass-soft: rgba(201,154,68,0.55);
-    --teal:#5c9a95;
     --ink-soft:#9aa1b3; --ink-faint:#666c80;
     --ink-on-paper:#2b2415; --ink-on-paper-soft:#5c5236;
     --serif: "Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Noto Serif",serif;
@@ -39,11 +38,6 @@
     width: 56px; height: 1px; margin: 22px auto 0; border: none;
     background: linear-gradient(90deg, transparent, var(--brass), transparent);
   }
-  .preview-note{
-    text-align:center; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.03em;
-    color: var(--ink-faint); font-style: normal; margin: 0 0 30px;
-  }
-
   /* ---- tab nav ---- */
   nav.tabs{
     display:flex; gap: 4px; background: rgba(255,255,255,0.04); border: 1px solid var(--sky-line);
