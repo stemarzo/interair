@@ -987,6 +987,68 @@ sempre dentro `.card` su parchment): cambiare `color: var(--ink-faint)` in
 Nessun altro file cambia. Il markup dell'`.entry` esterno (`<article class="entry">`,
 `::before` per il rombo del timeline) resta invariato — solo il contenuto dentro cambia.
 
+## Amendment 4 (Task 4e): sblocco progressivo dei giorni + foto stile polaroid
+
+Due richieste dopo il test visivo con la card unica a rilievo:
+
+**A. Sblocco progressivo.** Il Diario non deve più mostrare tutti i 21 giorni fin da subito
+(nemmeno come "non ancora scritto") — deve mostrare solo i giorni fino a un numero che l'utente
+comunicherà via chat quando vorrà "sbloccare" il giorno successivo. Per ora si imposta come se
+fossimo al giorno 3.
+
+`trip-data.js`: aggiungere una costante in cima al file, prima di `const planBlocks`:
+```js
+const giornoCorrente = 3; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
+```
+e aggiungerla al `module.exports` in fondo al file: `module.exports = { days, planBlocks, stops, giornoCorrente };`.
+
+`app.js`, `renderDiarioTimeline()`: filtrare `days` prima di invertire l'ordine, così i giorni
+oltre `giornoCorrente` non vengono renderizzati affatto (non esistono nel DOM, non solo nascosti
+via CSS):
+```js
+days.filter(day => day.n <= giornoCorrente).reverse().forEach(day => {
+```
+(`filter` produce già un array nuovo, quindi `.reverse()` diretto non muta `days`.)
+
+Il tab **Programma** non è toccato da questo filtro: le tappe cliccabili continuano ad aprire il
+popup piano/logistica per qualunque giorno, passato o futuro — l'itinerario è noto in anticipo,
+solo il diario si sblocca gradualmente.
+
+**B. Foto in stile polaroid.** Le foto nella photostrip diventano più "classiche": cornice
+bianca/parchment spessa attorno alla foto (più spessa in basso, come una polaroid vera), foto
+quadrata, senza rotazione casuale (dritte in fila). Nessuna didascalia per singola foto (il testo
+del diario sotto resta la "descrizione" della giornata) — va quindi rimossa la regola `.photo
+.cap` (non più usata) insieme a `.photo svg` (già morta: la renderizzazione dinamica genera solo
+`<img>`, mai `<svg>` inline — erano rimaste dalla primissima versione statica del sito).
+
+`app.js`, dentro la costruzione di `photostrip` in `renderDiarioTimeline()`, avvolgere l'`<img>`
+in un div `.frame`:
+```js
+photostrip = `<div class="photostrip">` + day.diario.foto.map((src, i) =>
+  `<div class="photo"><div class="frame"><img src="${src}" alt="Foto ${i + 1} — ${day.tappa}" loading="lazy"></div></div>`
+).join('') + `</div>`;
+```
+
+`style.css`, sostituire il blocco `.photostrip`/`.photo`/`.photo svg`/`.photo img`/`.photo .cap`
+esistente con:
+```css
+.photostrip{
+  display:flex; gap: 14px; overflow-x: auto; margin: 2px -4px 18px; padding: 8px 4px;
+  scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
+}
+.photostrip::-webkit-scrollbar{ height: 5px; }
+.photostrip::-webkit-scrollbar-thumb{ background: var(--parchment-edge); border-radius: 3px; }
+.photo{
+  flex: 0 0 auto; width: min(62vw, 190px); scroll-snap-align: start;
+  background: var(--parchment); padding: 10px 10px 22px; border-radius: 2px;
+  box-shadow: 0 2px 0 var(--parchment-edge), 0 10px 20px -12px rgba(0,0,0,0.45);
+}
+.photo .frame{ width:100%; aspect-ratio: 1 / 1; overflow:hidden; background: var(--parchment-dim); }
+.photo .frame img{ width:100%; height:100%; display:block; object-fit: cover; }
+```
+
+Nessun altro file cambia.
+
 ## Auto-verifica del piano
 
 - **Copertura spec**: architettura (Task 1-4 coprono i 4 file), modello dati (Task 1), le tre
