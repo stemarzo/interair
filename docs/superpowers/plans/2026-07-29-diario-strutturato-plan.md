@@ -1049,6 +1049,15 @@ esistente con:
 
 Nessun altro file cambia.
 
+## Amendment 5 (Task 4f): bordo polaroid bianco puro
+
+Dopo aver visto lo stile polaroid, l'utente ha chiesto più contrasto: il bordo della polaroid
+deve essere bianco puro, non il parchment caldo (`#ece3cf`) usato finora.
+
+`style.css`: nella regola `.photo` (introdotta nel Task 4e), cambiare `background:
+var(--parchment);` in `background: #fff;`. Nessun'altra proprietà della regola cambia. Nessun
+altro file cambia.
+
 ## Auto-verifica del piano
 
 - **Copertura spec**: architettura (Task 1-4 coprono i 4 file), modello dati (Task 1), le tre
