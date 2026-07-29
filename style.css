@@ -112,22 +112,18 @@
   .card p.lede::first-letter{ font-size: 1.5em; font-family: var(--serif); color: var(--ink-on-paper-soft); }
 
   .photostrip{
-    display:flex; gap: 9px; overflow-x: auto; margin: 2px -4px 16px; padding: 4px;
+    display:flex; gap: 14px; overflow-x: auto; margin: 2px -4px 18px; padding: 8px 4px;
     scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
   }
   .photostrip::-webkit-scrollbar{ height: 5px; }
   .photostrip::-webkit-scrollbar-thumb{ background: var(--parchment-edge); border-radius: 3px; }
   .photo{
-    flex: 0 0 auto; width: min(78vw, 230px); height: 168px; border-radius: 3px; overflow:hidden;
-    position: relative; scroll-snap-align: start; background: var(--parchment-dim);
+    flex: 0 0 auto; width: min(62vw, 190px); scroll-snap-align: start;
+    background: var(--parchment); padding: 10px 10px 22px; border-radius: 2px;
+    box-shadow: 0 2px 0 var(--parchment-edge), 0 10px 20px -12px rgba(0,0,0,0.45);
   }
-  .photo svg{ width:100%; height:100%; display:block; }
-  .photo img{ width:100%; height:100%; display:block; object-fit: cover; }
-  .photo .cap{
-    position:absolute; left:0; right:0; bottom:0; padding: 6px 9px;
-    font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.04em; color: var(--parchment);
-    background: linear-gradient(0deg, rgba(20,16,6,0.55), transparent);
-  }
+  .photo .frame{ width:100%; aspect-ratio: 1 / 1; overflow:hidden; background: var(--parchment-dim); }
+  .photo .frame img{ width:100%; height:100%; display:block; object-fit: cover; }
 
   /* ---- programma / itinerary ---- */
   .itinerary{ display:flex; flex-direction:column; }

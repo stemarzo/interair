@@ -2,6 +2,8 @@
 // Il piano di ogni giorno viene dalle guide Notion "Viaggi" (Norvegia, camper Spagna del Nord)
 // dove esistono; altrimenti resta solo la logistica finché non si scrive il diario.
 
+const giornoCorrente = 3; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
+
 const planBlocks = {
   "bergen-5ago": [
     { nome: "Bryggen", dettaglio: "il vecchio molo anseatico, patrimonio UNESCO.",
@@ -180,5 +182,5 @@ const stops = [
 ];
 
 if (typeof module !== "undefined" && module.exports) {
-  module.exports = { days, planBlocks, stops };
+  module.exports = { days, planBlocks, stops, giornoCorrente };
 }

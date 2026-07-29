@@ -38,7 +38,7 @@ if (typeof module !== 'undefined' && module.exports) {
   function renderDiarioTimeline() {
     const container = document.getElementById('diario-timeline');
     container.innerHTML = '';
-    days.slice().reverse().forEach(day => {
+    days.filter(day => day.n <= giornoCorrente).reverse().forEach(day => {
       const { label } = formatDayHeader(day.date);
       const article = document.createElement('article');
       article.className = 'entry' + (day.diario ? '' : ' entry-pending');
@@ -46,7 +46,7 @@ if (typeof module !== 'undefined' && module.exports) {
         let photostrip = '';
         if (day.diario.foto && day.diario.foto.length) {
           photostrip = `<div class="photostrip">` + day.diario.foto.map((src, i) =>
-            `<div class="photo"><img src="${src}" alt="Foto ${i + 1} — ${day.tappa}" loading="lazy"></div>`
+            `<div class="photo"><div class="frame"><img src="${src}" alt="Foto ${i + 1} — ${day.tappa}" loading="lazy"></div></div>`
           ).join('') + `</div>`;
         }
         const paragraphs = day.diario.paragrafi.map((p, i) => `<p class="${i === 0 ? 'lede' : ''}">${p}</p>`).join('');
