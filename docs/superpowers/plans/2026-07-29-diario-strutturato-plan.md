@@ -903,6 +903,23 @@ Cambiamenti concreti (Task 4b):
 Il resto del Task 4 (tab Programma cliccabile, popup, deep-link via hash, mappa SVG) resta
 invariato e già approvato.
 
+## Amendment 2 (Task 4c): ordine cronologico inverso nel Diario
+
+Dopo aver visto la timeline in stile diario, l'utente ha chiesto che i giorni più recenti
+compaiano in alto (come un blog/log, non in ordine di partenza) — così quando le voci verranno
+aggiunte sera dopo sera, l'ultima scritta resta sempre in cima senza dover scorrere.
+
+Cambiamento: in `app.js`, `renderDiarioTimeline()` deve iterare `days` in ordine decrescente di
+`n` invece che crescente (es. `days.slice().reverse().forEach(day => { ... })` invece di
+`days.forEach(day => { ... })`), lasciando invariato tutto il resto della funzione. Nessun altro
+file cambia.
+
+Nota: i contenuti reali del diario (titolo/paragrafi/foto per ogni giorno) NON vanno scritti in
+anticipo in `trip-data.js` — l'utente li aggiungerà lui stesso, un giorno alla volta, quando
+glielo chiederà esplicitamente man mano che il viaggio procede. Eventuali dati di prova per
+vedere l'aspetto grafico (foto/testo placeholder) sono solo un test visivo temporaneo e non
+devono restare nei commit finali.
+
 ## Auto-verifica del piano
 
 - **Copertura spec**: architettura (Task 1-4 coprono i 4 file), modello dati (Task 1), le tre
