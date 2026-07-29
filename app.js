@@ -51,12 +51,12 @@ if (typeof module !== 'undefined' && module.exports) {
         }
         const paragraphs = day.diario.paragrafi.map((p, i) => `<p class="${i === 0 ? 'lede' : ''}">${p}</p>`).join('');
         article.innerHTML = `
-          <div class="stamp">
-            <span class="day">Giorno ${day.n}</span>
-            <span class="date">${label}</span>
-            <span class="place">${day.tappa}</span>
-          </div>
           <div class="card">
+            <div class="stamp">
+              <span class="day">Giorno ${day.n}</span>
+              <span class="date">${label}</span>
+              <span class="place">${day.tappa}</span>
+            </div>
             ${photostrip}
             <h2>${day.diario.titolo}</h2>
             ${paragraphs}
@@ -64,12 +64,14 @@ if (typeof module !== 'undefined' && module.exports) {
         `;
       } else {
         article.innerHTML = `
-          <div class="stamp">
-            <span class="day">Giorno ${day.n}</span>
-            <span class="date">${label}</span>
-            <span class="place">${day.tappa}</span>
+          <div class="card">
+            <div class="stamp">
+              <span class="day">Giorno ${day.n}</span>
+              <span class="date">${label}</span>
+              <span class="place">${day.tappa}</span>
+            </div>
+            <p class="entry-pending-note">non ancora scritto</p>
           </div>
-          <p class="entry-pending-note">non ancora scritto</p>
         `;
       }
       container.appendChild(article);

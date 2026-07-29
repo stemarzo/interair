@@ -88,14 +88,15 @@
   .stamp{ display:flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px; margin-bottom: 12px; }
   .stamp .day{
     font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--brass); border: 1px solid var(--brass-soft); border-radius: 3px; padding: 3px 8px;
+    color: var(--ink-on-paper-soft); border: 1px solid var(--brass); border-radius: 3px; padding: 3px 8px;
+    background: rgba(201,154,68,0.18);
   }
-  .stamp .date{ font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.05em; color: var(--ink-soft); }
-  .stamp .place{ font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.05em; color: var(--teal); }
-  .stamp .place::before{ content: "· "; color: var(--ink-faint); }
+  .stamp .date{ font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.05em; color: var(--ink-on-paper-soft); }
+  .stamp .place{ font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.05em; color: var(--ink-on-paper-soft); }
+  .stamp .place::before{ content: "· "; color: var(--ink-on-paper-soft); }
 
   .entry-pending-note{
-    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.03em; color: var(--ink-faint);
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.03em; color: var(--ink-on-paper-soft);
     margin: 0; padding: 2px 0 0;
   }
 
