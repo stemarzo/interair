@@ -38,7 +38,7 @@ if (typeof module !== 'undefined' && module.exports) {
   function renderDiarioTimeline() {
     const container = document.getElementById('diario-timeline');
     container.innerHTML = '';
-    days.forEach(day => {
+    days.slice().reverse().forEach(day => {
       const { label } = formatDayHeader(day.date);
       const article = document.createElement('article');
       article.className = 'entry' + (day.diario ? '' : ' entry-pending');
