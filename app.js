@@ -15,13 +15,6 @@ function formatDayHeader(iso) {
   return { dow, label };
 }
 
-function excerpt(text, maxLen) {
-  if (text.length <= maxLen) return text;
-  const cut = text.slice(0, maxLen);
-  const lastSpace = cut.lastIndexOf(' ');
-  return cut.slice(0, lastSpace > 0 ? lastSpace : maxLen).trim() + '…';
-}
-
 function getPlanForDay(day, planBlocksMap) {
   if (!day.planBlock) return null;
   return planBlocksMap[day.planBlock] || null;
@@ -36,31 +29,50 @@ function clampDayNumber(n, totalDays) {
 }
 
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { parseISODate, formatDayHeader, excerpt, getPlanForDay, getStopForDay, clampDayNumber };
+  module.exports = { parseISODate, formatDayHeader, getPlanForDay, getStopForDay, clampDayNumber };
 }
 
 (function () {
   const totalDays = days.length;
 
-  function renderDiarioList() {
-    const list = document.getElementById('diario-list');
-    list.innerHTML = '';
+  function renderDiarioTimeline() {
+    const container = document.getElementById('diario-timeline');
+    container.innerHTML = '';
     days.forEach(day => {
       const { label } = formatDayHeader(day.date);
-      const written = !!day.diario;
-      const row = document.createElement('button');
-      row.type = 'button';
-      row.className = 'day-row';
-      row.innerHTML = `
-        <span class="day-n">Giorno ${day.n}</span>
-        <span class="day-date">${label}</span>
-        <span class="day-place">${day.tappa}</span>
-        ${written
-          ? `<span class="day-excerpt">${excerpt(day.diario.paragrafi[0], 110)}</span>`
-          : `<span class="day-pending">non ancora scritto</span>`}
-      `;
-      row.addEventListener('click', () => openDayModal(day.n));
-      list.appendChild(row);
+      const article = document.createElement('article');
+      article.className = 'entry' + (day.diario ? '' : ' entry-pending');
+      if (day.diario) {
+        let photostrip = '';
+        if (day.diario.foto && day.diario.foto.length) {
+          photostrip = `<div class="photostrip">` + day.diario.foto.map((src, i) =>
+            `<div class="photo"><img src="${src}" alt="Foto ${i + 1} — ${day.tappa}" loading="lazy"></div>`
+          ).join('') + `</div>`;
+        }
+        const paragraphs = day.diario.paragrafi.map((p, i) => `<p class="${i === 0 ? 'lede' : ''}">${p}</p>`).join('');
+        article.innerHTML = `
+          <div class="stamp">
+            <span class="day">Giorno ${day.n}</span>
+            <span class="date">${label}</span>
+            <span class="place">${day.tappa}</span>
+          </div>
+          <div class="card">
+            ${photostrip}
+            <h2>${day.diario.titolo}</h2>
+            ${paragraphs}
+          </div>
+        `;
+      } else {
+        article.innerHTML = `
+          <div class="stamp">
+            <span class="day">Giorno ${day.n}</span>
+            <span class="date">${label}</span>
+            <span class="place">${day.tappa}</span>
+          </div>
+          <p class="entry-pending-note">non ancora scritto</p>
+        `;
+      }
+      container.appendChild(article);
     });
   }
 
@@ -113,20 +125,6 @@ if (typeof module !== 'undefined' && module.exports) {
             <div class="plan-meta">${planMetaRow(item)}</div>
           </div>
         `).join('') + `</div>`;
-    }
-
-    html += `<p class="modal-section-title">Diario della serata</p>`;
-    if (day.diario) {
-      html += `<div class="card">`;
-      if (day.diario.foto && day.diario.foto.length) {
-        html += `<div class="photostrip">` + day.diario.foto.map((src, i) =>
-          `<div class="photo"><img src="${src}" alt="Foto ${i + 1} — ${day.tappa}" loading="lazy"></div>`
-        ).join('') + `</div>`;
-      }
-      html += day.diario.paragrafi.map((p, i) => `<p class="${i === 0 ? 'lede' : ''}">${p}</p>`).join('');
-      html += `</div>`;
-    } else {
-      html += `<p class="diary-pending">il resoconto arriverà la sera del ${label}</p>`;
     }
 
     body.innerHTML = html;
@@ -184,7 +182,7 @@ if (typeof module !== 'undefined' && module.exports) {
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    renderDiarioList();
+    renderDiarioTimeline();
     wireUpProgrammaStops();
     wireUpModal();
     wireUpTabs();

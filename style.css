@@ -94,6 +94,11 @@
   .stamp .place{ font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.05em; color: var(--teal); }
   .stamp .place::before{ content: "· "; color: var(--ink-faint); }
 
+  .entry-pending-note{
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.03em; color: var(--ink-faint);
+    margin: 0; padding: 2px 0 0;
+  }
+
   .card{
     background: var(--parchment); color: var(--ink-on-paper);
     border-radius: 5px; padding: 20px 18px 20px;
@@ -162,37 +167,6 @@
   }
   footer.endmark .mark{ color: var(--brass); }
 
-/* ---- diario: elenco giorni cliccabile ---- */
-.diario-list{ display:flex; flex-direction:column; }
-.day-row{
-  display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 16px;
-  width:100%; text-align:left; appearance:none; border:none; border-left:2px solid transparent;
-  background:none; font:inherit; color:inherit; cursor:pointer;
-  padding:13px 10px 13px 12px; border-bottom:1px solid var(--sky-line);
-  transition:background .15s, border-color .15s;
-}
-.day-row:first-child{ border-top:1px solid var(--sky-line); }
-.day-row:hover, .day-row:focus-visible{
-  background: rgba(201,154,68,0.07); border-left-color: var(--brass); outline:none;
-}
-.day-row .day-n{
-  font-family:var(--mono); font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase;
-  color:var(--brass); width:68px; flex:none;
-}
-.day-row .day-date{ font-family:var(--mono); font-size:0.7rem; color:var(--ink-soft); width:82px; flex:none; }
-.day-row .day-place{ font-size:0.98rem; flex:1 1 170px; }
-.day-row .day-excerpt{
-  font-family:var(--serif); font-style:italic; font-size:0.86rem; color:var(--ink-soft);
-  flex:2 1 220px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
-}
-.day-row .day-pending{
-  font-family:var(--mono); font-size:0.64rem; letter-spacing:0.05em; color:var(--ink-faint);
-  flex:2 1 220px;
-}
-@media (max-width: 620px){
-  .day-row .day-excerpt, .day-row .day-pending{ flex-basis:100%; margin-top:2px; }
-}
-
 /* ---- tappe cliccabili in programma ---- */
 .stop.clickable{ cursor:pointer; border-radius:4px; }
 .stop.clickable:hover{ background: rgba(201,154,68,0.07); }
@@ -232,10 +206,6 @@ dialog.day-modal::backdrop{ background: rgba(6,7,11,0.72); backdrop-filter: blur
 .plan-item .plan-detail{ font-size:0.92rem; line-height:1.55; margin:3px 0 6px; max-width:60ch; }
 .plan-item .plan-meta{ font-family:var(--mono); font-size:0.68rem; letter-spacing:0.02em; color:var(--ink-on-paper-soft); }
 .plan-item .plan-meta span + span::before{ content:" · "; }
-.diary-pending{
-  font-family:var(--mono); font-size:0.76rem; color:var(--ink-faint); text-align:center;
-  padding:22px 12px; border:1px dashed var(--parchment-edge); border-radius:6px;
-}
 .modal-nav{
   display:flex; justify-content:space-between; align-items:center; gap:10px;
   padding:16px 22px 22px; border-top:1px solid var(--parchment-edge); margin-top:8px;
