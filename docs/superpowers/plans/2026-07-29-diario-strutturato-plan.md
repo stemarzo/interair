@@ -920,6 +920,73 @@ glielo chiederà esplicitamente man mano che il viaggio procede. Eventuali dati 
 vedere l'aspetto grafico (foto/testo placeholder) sono solo un test visivo temporaneo e non
 devono restare nei commit finali.
 
+## Amendment 3 (Task 4d): stamp dentro la card, un unico blocco "a rilievo" per giorno
+
+Dopo un test visivo con foto/testo di prova, l'utente ha chiesto che ogni giorno del Diario sia
+un unico blocco rialzato (stesso sfondo parchment, un solo bordo/ombra), non più il timbro
+Giorno/Data/Luogo separato sopra una card indipendente. Questo vale sia per i giorni scritti sia
+per quelli "non ancora scritto" — ogni giorno ha sempre una card, piena o quasi vuota.
+
+**`app.js`, `renderDiarioTimeline()`:** in entrambi i rami (scritto/non scritto), lo `.stamp`
+diventa il primo figlio dentro `.card` invece di un fratello prima di essa:
+
+```js
+if (day.diario) {
+  // ...costruzione di photostrip e paragraphs invariata...
+  article.innerHTML = `
+    <div class="card">
+      <div class="stamp">
+        <span class="day">Giorno ${day.n}</span>
+        <span class="date">${label}</span>
+        <span class="place">${day.tappa}</span>
+      </div>
+      ${photostrip}
+      <h2>${day.diario.titolo}</h2>
+      ${paragraphs}
+    </div>
+  `;
+} else {
+  article.innerHTML = `
+    <div class="card">
+      <div class="stamp">
+        <span class="day">Giorno ${day.n}</span>
+        <span class="date">${label}</span>
+        <span class="place">${day.tappa}</span>
+      </div>
+      <p class="entry-pending-note">non ancora scritto</p>
+    </div>
+  `;
+}
+```
+
+**`style.css`:** lo `.stamp` ora compare SEMPRE su sfondo parchment (sia nel Diario dentro
+`.card`, sia nel popup Programma dentro `.modal-body`/`.modal-inner`, che è già parchment —
+quest'ultimo era già un difetto di contrasto latente nel Task 4, mai notato perché non
+verificato visivamente prima d'ora). Aggiornare le regole esistenti (non aggiungerne di
+scoped), sostituendo i colori pensati per lo sfondo scuro con toni "on paper" già definiti:
+
+```css
+.stamp .day{
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-on-paper-soft); border: 1px solid var(--brass); border-radius: 3px; padding: 3px 8px;
+  background: rgba(201,154,68,0.18);
+}
+.stamp .date{ font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.05em; color: var(--ink-on-paper-soft); }
+.stamp .place{ font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.05em; color: var(--ink-on-paper-soft); }
+.stamp .place::before{ content: "· "; color: var(--ink-on-paper-soft); }
+```
+
+(Sostituiscono i valori attuali che usano `var(--brass)` puro per `.day`, `var(--ink-soft)` per
+`.date`, `var(--teal)` per `.place` e `var(--ink-faint)` per `.place::before` — quei quattro
+erano calibrati per il vecchio sfondo scuro fuori dalla card.)
+
+Anche `.entry-pending-note` va corretta allo stesso modo (era calibrata per sfondo scuro, ora è
+sempre dentro `.card` su parchment): cambiare `color: var(--ink-faint)` in
+`color: var(--ink-on-paper-soft)`, lasciando invariato il resto della regola.
+
+Nessun altro file cambia. Il markup dell'`.entry` esterno (`<article class="entry">`,
+`::before` per il rombo del timeline) resta invariato — solo il contenuto dentro cambia.
+
 ## Auto-verifica del piano
 
 - **Copertura spec**: architettura (Task 1-4 coprono i 4 file), modello dati (Task 1), le tre
