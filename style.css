@@ -119,7 +119,7 @@
   .photostrip::-webkit-scrollbar-thumb{ background: var(--parchment-edge); border-radius: 3px; }
   .photo{
     flex: 0 0 auto; width: min(62vw, 190px); scroll-snap-align: start;
-    background: var(--parchment); padding: 10px 10px 22px; border-radius: 2px;
+    background: #fff; padding: 10px 10px 22px; border-radius: 2px;
     box-shadow: 0 2px 0 var(--parchment-edge), 0 10px 20px -12px rgba(0,0,0,0.45);
   }
   .photo .frame{ width:100%; aspect-ratio: 1 / 1; overflow:hidden; background: var(--parchment-dim); }
