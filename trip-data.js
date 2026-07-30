@@ -123,15 +123,15 @@ const planBlocks = {
 
 const days = [
   { n: 1, date: "2026-08-03", tappa: "Partenza · Danzica",
-    logistica: ["Volo Wizz Air 22:00 → 00:15 (Milano → Danzica)", "Alloggio: Luxury Aura, Danzica"],
+    logistica: ["Volo Wizz Air W6 1714, 22:00 → 00:15 (Milano → Danzica)", "Alloggio: Luxury Aura, Danzica"],
     planBlock: null, diario: null },
   { n: 2, date: "2026-08-04", tappa: "Danzica",
     logistica: ["Alloggio: Luxury Aura, Danzica"], planBlock: null, diario: null },
   { n: 3, date: "2026-08-05", tappa: "Danzica → Bergen",
-    logistica: ["Volo Wizz Air 12:20 → 14:15 (Danzica → Bergen)", "Ritiro auto a noleggio nel pomeriggio", "Alloggio: Årstad, Bergen"],
+    logistica: ["Volo Wizz Air W6 1757, 12:20 → 14:15 (Danzica → Bergen)", "Alloggio: Årstad, Bergen"],
     planBlock: "bergen-5ago", diario: null },
   { n: 4, date: "2026-08-06", tappa: "Bergen",
-    logistica: ["Alloggio: Årstad, Bergen"], planBlock: "bergen-6ago", diario: null },
+    logistica: ["Ritiro auto a noleggio, ore 10:00", "Alloggio: Årstad, Bergen"], planBlock: "bergen-6ago", diario: null },
   { n: 5, date: "2026-08-07", tappa: "Bergen → Eidfjord",
     logistica: ["Trasferimento in auto verso l'Hardangerfjord (~3h)", "Arrivo a Eidfjord nel pomeriggio"],
     planBlock: "eidfjord-transfer-7ago", diario: null },
@@ -139,13 +139,13 @@ const days = [
   { n: 7, date: "2026-08-09", tappa: "Eidfjord", logistica: [], planBlock: "eidfjord-opzioni", diario: null },
   { n: 8, date: "2026-08-10", tappa: "Eidfjord", logistica: [], planBlock: "eidfjord-opzioni", diario: null },
   { n: 9, date: "2026-08-11", tappa: "Eidfjord → Bergen → Oslo",
-    logistica: ["Trasferimento Eidfjord → Bergen (2,5-3h di guida)", "Volo Norwegian 16:20 → 17:15 (Bergen → Oslo)"],
+    logistica: ["Trasferimento Eidfjord → Bergen (2,5-3h di guida)", "Riconsegna auto a noleggio, ore 15:00", "Volo Norwegian 16:20 → 17:15 (Bergen → Oslo)"],
     planBlock: "eidfjord-partenza-11ago", diario: null },
   { n: 10, date: "2026-08-12", tappa: "Oslo",
-    logistica: ["Volo Vueling 21:25 → 00:55 (Oslo → Barcellona, atterraggio dopo mezzanotte)"],
+    logistica: ["Volo Vueling VY8539, 21:25 → 00:55 (Oslo → Barcellona, atterraggio dopo mezzanotte)"],
     planBlock: null, diario: null },
   { n: 11, date: "2026-08-13", tappa: "Barcellona → Bilbao",
-    logistica: ["Atterraggio a Barcellona 00:55, notte breve", "Volo Vueling 09:10 → 10:25 (Barcellona → Bilbao)"],
+    logistica: ["Atterraggio a Barcellona 00:55, notte breve", "Volo Vueling VY1422, 09:10 → 10:25 (Barcellona → Bilbao)", "Pernottamento del 13-14 a Bilbao: ancora da organizzare"],
     planBlock: null, diario: null },
   { n: 12, date: "2026-08-14", tappa: "Bilbao → San Sebastián",
     logistica: ["Ritiro camper a Zamudio (Bilbao), ore 15:00 — già prenotato (Roadsurfer)", "Pernottamento: area camper San Sebastián (Camperstop Donosti)"],
@@ -165,20 +165,20 @@ const days = [
   { n: 19, date: "2026-08-21", tappa: "Gijón, Cudillero",
     logistica: ["Pernottamento: zona Santander/Castro Urdiales"], planBlock: "camper-21ago", diario: null },
   { n: 20, date: "2026-08-22", tappa: "Riconsegna camper, Bilbao",
-    logistica: ["Riconsegna camper a Zamudio, ore 12:00 — già prenotato (Roadsurfer)"], planBlock: "bilbao-extra", diario: null },
+    logistica: ["Riconsegna camper a Zamudio, ore 12:00 — già prenotato (Roadsurfer)", "Alloggio: Bilbao (ultima notte)"], planBlock: "bilbao-extra", diario: null },
   { n: 21, date: "2026-08-23", tappa: "Rientro a Milano",
-    logistica: ["Volo Vueling 17:35 → 19:30 (Bilbao → Milano)"], planBlock: "bilbao-extra", diario: null }
+    logistica: ["Volo Vueling VY1454, 17:35 → 19:30 (Bilbao → Milano)"], planBlock: "bilbao-extra", diario: null }
 ];
 
 const stops = [
-  { place: "Danzica (Polonia)", dayRange: [1, 2], note: "Wizz Air 22:00→00:15 · Luxury Aura" },
-  { place: "Bergen (Norvegia)", dayRange: [3, 4], note: "Wizz Air 12:20→14:15, poi auto · Årstad" },
+  { place: "Danzica (Polonia)", dayRange: [1, 2], note: "Wizz Air W6 1714, 22:00→00:15 · Luxury Aura" },
+  { place: "Bergen (Norvegia)", dayRange: [3, 4], note: "Wizz Air W6 1757, 12:20→14:15, poi auto · Årstad" },
   { place: "Eidfjord (Norvegia)", dayRange: [5, 9], note: "Auto · tra i fiordi" },
   { place: "Oslo (Norvegia)", dayRange: [9, 10], note: "Norwegian 16:20→17:15" },
-  { place: "Barcellona", dayRange: [10, 11], note: "Vueling 21:25→00:55, senza dormire" },
-  { place: "Bilbao (Spagna)", dayRange: [11, 12], note: "Vueling 09:10→10:25" },
+  { place: "Barcellona", dayRange: [10, 11], note: "Vueling VY8539, 21:25→00:55, senza dormire" },
+  { place: "Bilbao (Spagna)", dayRange: [11, 12], note: "Vueling VY1422, 09:10→10:25" },
   { place: "In camper, Spagna del nord", dayRange: [12, 20], note: "Camper" },
-  { place: "Rientro a Milano", dayRange: [21, 21], note: "Vueling 17:35→19:30" }
+  { place: "Rientro a Milano", dayRange: [21, 21], note: "Vueling VY1454, 17:35→19:30" }
 ];
 
 if (typeof module !== "undefined" && module.exports) {
