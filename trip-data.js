@@ -123,12 +123,18 @@ const planBlocks = {
 
 const days = [
   { n: 1, date: "2026-08-03", tappa: "Partenza · Danzica",
-    logistica: ["Volo Wizz Air W6 1714, 22:00 → 00:15 (Milano → Danzica)", "Alloggio: Luxury Aura, Danzica"],
+    logistica: [
+      { text: "Volo Wizz Air W6 1714, 22:00 → 00:15 (Milano → Danzica)", url: "https://www.flightradar24.com/data/flights/w61714" },
+      "Alloggio: Luxury Aura, Danzica"
+    ],
     planBlock: null, diario: null },
   { n: 2, date: "2026-08-04", tappa: "Danzica",
     logistica: ["Alloggio: Luxury Aura, Danzica"], planBlock: null, diario: null },
   { n: 3, date: "2026-08-05", tappa: "Danzica → Bergen",
-    logistica: ["Volo Wizz Air W6 1757, 12:20 → 14:15 (Danzica → Bergen)", "Alloggio: Årstad, Bergen"],
+    logistica: [
+      { text: "Volo Wizz Air W6 1757, 12:20 → 14:15 (Danzica → Bergen)", url: "https://www.flightradar24.com/data/flights/w61757" },
+      "Alloggio: Årstad, Bergen"
+    ],
     planBlock: "bergen-5ago", diario: null },
   { n: 4, date: "2026-08-06", tappa: "Bergen",
     logistica: ["Ritiro auto a noleggio, ore 10:00", "Alloggio: Årstad, Bergen"], planBlock: "bergen-6ago", diario: null },
@@ -142,10 +148,16 @@ const days = [
     logistica: ["Trasferimento Eidfjord → Bergen (2,5-3h di guida)", "Riconsegna auto a noleggio, ore 15:00", "Volo Norwegian 16:20 → 17:15 (Bergen → Oslo)"],
     planBlock: "eidfjord-partenza-11ago", diario: null },
   { n: 10, date: "2026-08-12", tappa: "Oslo",
-    logistica: ["Volo Vueling VY8539, 21:25 → 00:55 (Oslo → Barcellona, atterraggio dopo mezzanotte)"],
+    logistica: [
+      { text: "Volo Vueling VY8539, 21:25 → 00:55 (Oslo → Barcellona, atterraggio dopo mezzanotte)", url: "https://www.flightradar24.com/data/flights/vy8539" }
+    ],
     planBlock: null, diario: null },
   { n: 11, date: "2026-08-13", tappa: "Barcellona → Bilbao",
-    logistica: ["Atterraggio a Barcellona 00:55, notte breve", "Volo Vueling VY1422, 09:10 → 10:25 (Barcellona → Bilbao)", "Pernottamento del 13-14 a Bilbao: ancora da organizzare"],
+    logistica: [
+      "Atterraggio a Barcellona 00:55, notte breve",
+      { text: "Volo Vueling VY1422, 09:10 → 10:25 (Barcellona → Bilbao)", url: "https://www.flightradar24.com/data/flights/vy1422" },
+      "Pernottamento del 13-14 a Bilbao: ancora da organizzare"
+    ],
     planBlock: null, diario: null },
   { n: 12, date: "2026-08-14", tappa: "Bilbao → San Sebastián",
     logistica: ["Ritiro camper a Zamudio (Bilbao), ore 15:00 — già prenotato (Roadsurfer)", "Pernottamento: area camper San Sebastián (Camperstop Donosti)"],
@@ -167,7 +179,10 @@ const days = [
   { n: 20, date: "2026-08-22", tappa: "Riconsegna camper, Bilbao",
     logistica: ["Riconsegna camper a Zamudio, ore 12:00 — già prenotato (Roadsurfer)", "Alloggio: Bilbao (ultima notte)"], planBlock: "bilbao-extra", diario: null },
   { n: 21, date: "2026-08-23", tappa: "Rientro a Milano",
-    logistica: ["Volo Vueling VY1454, 17:35 → 19:30 (Bilbao → Milano)"], planBlock: "bilbao-extra", diario: null }
+    logistica: [
+      { text: "Volo Vueling VY1454, 17:35 → 19:30 (Bilbao → Milano)", url: "https://www.flightradar24.com/data/flights/vy1454" }
+    ],
+    planBlock: "bilbao-extra", diario: null }
 ];
 
 const stops = [

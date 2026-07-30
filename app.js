@@ -124,7 +124,12 @@ if (typeof module !== 'undefined' && module.exports) {
 
     if (day.logistica.length) {
       html += `<p class="modal-section-title">Logistica</p><ul class="logistica-list">`
-        + day.logistica.map(l => `<li>${escapeHTML(l)}</li>`).join('') + `</ul>`;
+        + day.logistica.map(l => {
+          if (l && typeof l === 'object' && l.url) {
+            return `<li>${escapeHTML(l.text)} — <a href="${escapeHTML(l.url)}" target="_blank" rel="noopener noreferrer">traccia il volo ↗</a></li>`;
+          }
+          return `<li>${escapeHTML(l)}</li>`;
+        }).join('') + `</ul>`;
     }
 
     if (plan) {

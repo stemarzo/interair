@@ -191,6 +191,8 @@ dialog.day-modal::backdrop{ background: rgba(6,7,11,0.72); backdrop-filter: blur
 .logistica-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
 .logistica-list li{ font-family:var(--mono); font-size:0.78rem; color:var(--ink-on-paper-soft); padding-left:14px; position:relative; }
 .logistica-list li::before{ content:"·"; position:absolute; left:0; color:var(--brass); }
+.logistica-list a{ color:var(--brass); text-decoration:none; border-bottom:1px solid var(--brass-soft); }
+.logistica-list a:hover, .logistica-list a:focus-visible{ color:var(--ink-on-paper); border-bottom-color:var(--ink-on-paper); }
 .plan-list{ display:flex; flex-direction:column; gap:14px; }
 .plan-item{ border-left:2px solid var(--brass-soft); padding:1px 0 1px 12px; }
 .plan-item .plan-name{ font-weight:600; font-size:1rem; }
