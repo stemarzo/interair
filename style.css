@@ -119,19 +119,40 @@
   .photo .frame{ width:100%; aspect-ratio: 1 / 1; overflow:hidden; background: var(--parchment-dim); }
   .photo .frame img{ width:100%; height:100%; display:block; object-fit: cover; }
 
-  /* ---- programma / itinerary ---- */
+  /* ---- programma / itinerary (righe a livello di giorno, raggruppate per tappa) ---- */
   .itinerary{ display:flex; flex-direction:column; }
-  .stop{ display:flex; flex-wrap: wrap; align-items: baseline; gap: 3px 16px; padding: 14px 4px; border-bottom: 1px solid var(--sky-line); }
-  .stop:first-child{ border-top: 1px solid var(--sky-line); }
-  .stop .stop-day{
-    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--brass); width: 78px; flex: none;
+  .prog-group-head{
+    display:flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 3px 12px;
+    padding: 22px 4px 7px; border-top: 1px solid var(--brass-soft);
   }
-  .stop .stop-place{ font-size: 1.02rem; flex: 1 1 200px; }
-  .stop .stop-note{ font-family: var(--mono); font-size: 0.7rem; color: var(--ink-soft); }
-  .itinerary-empty{
-    font-family: var(--mono); font-size: 0.76rem; color: var(--ink-faint); text-align:center;
-    padding: 28px 12px; border: 1px dashed var(--sky-line); border-radius: 6px;
+  .itinerary > .prog-group-head:first-child{ padding-top: 4px; }
+  .prog-group-place{
+    font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--brass); font-weight: 600;
+  }
+  .prog-group-note{ font-family: var(--mono); font-size: 0.66rem; color: var(--ink-faint); }
+
+  .prog-day{
+    display:flex; flex-wrap: wrap; align-items: baseline; gap: 3px 16px; width: 100%; text-align:left;
+    appearance:none; border:none; border-left: 2px solid transparent; background:none; font:inherit; color:inherit;
+    cursor:pointer; padding: 12px 8px 12px 10px; border-bottom: 1px solid var(--sky-line);
+    transition: background .15s, border-color .15s;
+  }
+  .prog-day:hover, .prog-day:focus-visible{
+    background: rgba(201,154,68,0.07); border-left-color: var(--brass); outline:none;
+  }
+  .prog-day .prog-day-n{
+    font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-faint); width: 60px; flex: none;
+  }
+  .prog-day .prog-day-date{ font-family: var(--mono); font-size: 0.7rem; color: var(--ink-soft); width: 66px; flex: none; }
+  .prog-day .prog-day-tappa{ font-size: 1rem; flex: 1 1 170px; }
+  .prog-day .prog-day-note{
+    font-family: var(--mono); font-size: 0.7rem; color: var(--ink-soft); flex: 2 1 220px;
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  }
+  @media (max-width: 560px){
+    .prog-day .prog-day-note{ flex-basis: 100%; margin-top: 2px; white-space:normal; }
   }
 
   /* ---- rotta (mappa stilizzata) ---- */
@@ -143,6 +164,7 @@
   .route-map .europe-outline{ fill:none; stroke: var(--sky-line); stroke-width: 1.1; stroke-linejoin: round; }
   .route-map .leg{ fill:none; stroke: var(--brass); stroke-width: 1.6; stroke-linecap: round; }
   .route-map .leg-return{ fill:none; stroke: var(--ink-soft); stroke-width: 1.3; stroke-linecap: round; stroke-dasharray: 2 5; }
+  .route-map .stop-halo, .route-map .home-halo{ fill: var(--brass); opacity: 0.16; }
   .route-map .stop-dot{ fill: var(--sky); stroke: var(--brass); stroke-width: 2; }
   .route-map .home-mark{ fill: var(--sky); stroke: var(--parchment); stroke-width: 1.6; }
   .route-map text{ font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.04em; fill: var(--ink-soft); }
@@ -157,11 +179,6 @@
     letter-spacing: 0.06em; color: var(--ink-faint);
   }
   footer.endmark .mark{ color: var(--brass); }
-
-/* ---- tappe cliccabili in programma ---- */
-.stop.clickable{ cursor:pointer; border-radius:4px; }
-.stop.clickable:hover{ background: rgba(201,154,68,0.07); }
-.stop.clickable:focus-visible{ outline:2px solid var(--brass); outline-offset:2px; }
 
 /* ---- popup giorno ---- */
 dialog.day-modal{

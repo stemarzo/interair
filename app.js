@@ -84,17 +84,45 @@ if (typeof module !== 'undefined' && module.exports) {
     });
   }
 
-  function wireUpProgrammaStops() {
-    document.querySelectorAll('#tab-programma .stop').forEach(el => {
-      const startDay = Number(el.dataset.startDay);
-      if (!startDay) return;
-      el.classList.add('clickable');
-      el.setAttribute('role', 'button');
-      el.setAttribute('tabindex', '0');
-      el.addEventListener('click', () => openDayModal(startDay));
-      el.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openDayModal(startDay); }
-      });
+  function dayNote(day) {
+    if (day.logistica.length) {
+      const first = day.logistica[0];
+      return typeof first === 'object' ? first.text : first;
+    }
+    const plan = getPlanForDay(day, planBlocks);
+    if (plan && plan.length) return plan[0].nome;
+    return null;
+  }
+
+  function renderProgrammaList() {
+    const container = document.getElementById('programma-list');
+    container.innerHTML = '';
+    let lastStop = null;
+    days.forEach(day => {
+      const stop = getStopForDay(day.n, stops);
+      if (stop && stop !== lastStop) {
+        const head = document.createElement('div');
+        head.className = 'prog-group-head';
+        head.innerHTML = `
+          <span class="prog-group-place">${escapeHTML(stop.place)}</span>
+          <span class="prog-group-note">${escapeHTML(stop.note)}</span>
+        `;
+        container.appendChild(head);
+        lastStop = stop;
+      }
+      const { label } = formatDayHeader(day.date);
+      const note = dayNote(day);
+      const row = document.createElement('button');
+      row.type = 'button';
+      row.className = 'prog-day';
+      row.innerHTML = `
+        <span class="prog-day-n">Giorno ${day.n}</span>
+        <span class="prog-day-date">${label}</span>
+        <span class="prog-day-tappa">${escapeHTML(day.tappa)}</span>
+        ${note ? `<span class="prog-day-note">${escapeHTML(note)}</span>` : ''}
+      `;
+      row.addEventListener('click', () => openDayModal(day.n));
+      container.appendChild(row);
     });
   }
 
@@ -199,7 +227,7 @@ if (typeof module !== 'undefined' && module.exports) {
 
   document.addEventListener('DOMContentLoaded', () => {
     renderDiarioTimeline();
-    wireUpProgrammaStops();
+    renderProgrammaList();
     wireUpModal();
     wireUpTabs();
     openFromHash();
