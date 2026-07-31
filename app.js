@@ -47,7 +47,6 @@ if (typeof module !== 'undefined' && module.exports) {
     days.filter(day => day.n <= giornoCorrente).reverse().forEach(day => {
       const { label } = formatDayHeader(day.date);
       const article = document.createElement('article');
-      article.className = 'entry' + (day.diario ? '' : ' entry-pending');
       if (day.diario) {
         let photostrip = '';
         if (day.diario.foto && day.diario.foto.length) {
@@ -58,25 +57,29 @@ if (typeof module !== 'undefined' && module.exports) {
         const paragraphs = day.diario.paragrafi.map((p, i) => `<p class="${i === 0 ? 'lede' : ''}">${escapeHTML(p)}</p>`).join('');
         article.innerHTML = `
           <div class="card">
-            <div class="stamp">
-              <span class="day">Giorno ${day.n}</span>
-              <span class="date">${label}</span>
-              <span class="place">${escapeHTML(day.tappa)}</span>
+            <div class="card-strip">
+              <span class="card-day">Giorno ${day.n}</span>
+              <span class="card-date">${label}</span>
+              <span class="card-place">${escapeHTML(day.tappa)}</span>
             </div>
-            ${photostrip}
-            <h2>${escapeHTML(day.diario.titolo)}</h2>
-            ${paragraphs}
+            <div class="card-body">
+              ${photostrip}
+              <h2>${escapeHTML(day.diario.titolo)}</h2>
+              ${paragraphs}
+            </div>
           </div>
         `;
       } else {
         article.innerHTML = `
           <div class="card">
-            <div class="stamp">
-              <span class="day">Giorno ${day.n}</span>
-              <span class="date">${label}</span>
-              <span class="place">${escapeHTML(day.tappa)}</span>
+            <div class="card-strip card-strip--muted">
+              <span class="card-day">Giorno ${day.n}</span>
+              <span class="card-date">${label}</span>
+              <span class="card-place">${escapeHTML(day.tappa)}</span>
             </div>
-            <p class="entry-pending-note">non ancora scritto</p>
+            <div class="card-body">
+              <p class="entry-pending-note">non ancora scritto</p>
+            </div>
           </div>
         `;
       }
