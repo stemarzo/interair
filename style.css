@@ -65,8 +65,9 @@
   }
   h1.title{
     position:relative; margin: 10px 0 0; font-family: var(--pixel); font-weight:700;
-    font-size: clamp(40px, 10vw, 92px); line-height: .92; letter-spacing: -.01em; color: var(--ink);
+    font-size: clamp(30px, 11vw, 92px); line-height: .92; letter-spacing: -.01em; color: var(--ink);
     text-shadow: 4px 4px 0 var(--red), 8px 8px 0 var(--teal);
+    overflow-wrap: break-word; word-break: break-word;
   }
   .hero-badges{ position:relative; margin-top:22px; display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
   .badge{ font-family: var(--pixel); font-size: 12px; padding: 6px 11px; letter-spacing: .02em; }
