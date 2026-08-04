@@ -127,7 +127,15 @@ const days = [
       { text: "Volo Wizz Air W6 1714, 22:00 → 00:15 (Milano → Danzica)", url: "https://www.flightradar24.com/data/flights/w61714" },
       "Alloggio: Luxury Aura, Danzica"
     ],
-    planBlock: null, diario: null },
+    planBlock: null,
+    diario: {
+      titolo: "Arrivo a Danzica",
+      foto: ["foto/giorno1-1.jpg", "foto/giorno1-2.jpg", "foto/giorno1-3.jpg", "foto/giorno1-4.jpg"],
+      paragrafi: [
+        "Con rischio di ritardi, abitudini al contrario e certezze che crollano, siamo arrivati a Danzica.",
+        "Velocità media 85 km/h e tombini a livello. Ora si dorme."
+      ]
+    } },
   { n: 2, date: "2026-08-04", tappa: "Danzica",
     logistica: ["Alloggio: Luxury Aura, Danzica"], planBlock: null, diario: null },
   { n: 3, date: "2026-08-05", tappa: "Danzica → Bergen",
