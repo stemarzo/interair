@@ -51,7 +51,7 @@ if (typeof module !== 'undefined' && module.exports) {
         let photostrip = '';
         if (day.diario.foto && day.diario.foto.length) {
           photostrip = `<div class="photostrip">` + day.diario.foto.map((src, i) =>
-            `<div class="photo"><div class="frame"><img src="${src}" alt="Foto ${i + 1} — ${escapeHTML(day.tappa)}" loading="lazy"></div></div>`
+            `<div class="photo" tabindex="0" role="button" aria-label="Ingrandisci foto ${i + 1} — ${escapeHTML(day.tappa)}"><div class="frame"><img src="${src}" alt="Foto ${i + 1} — ${escapeHTML(day.tappa)}" loading="lazy"></div></div>`
           ).join('') + `</div>`;
         }
         const paragraphs = day.diario.paragrafi.map((p, i) => `<p class="${i === 0 ? 'lede' : ''}">${escapeHTML(p)}</p>`).join('');
@@ -213,6 +213,40 @@ if (typeof module !== 'undefined' && module.exports) {
     modal.addEventListener('close', clearHashIfDayLink);
   }
 
+  function openLightbox(src, alt) {
+    const img = document.getElementById('lightbox-img');
+    img.src = src;
+    img.alt = alt || '';
+    const dialog = document.getElementById('photo-lightbox');
+    if (!dialog.open) dialog.showModal();
+  }
+
+  function closeLightbox() {
+    document.getElementById('photo-lightbox').close();
+  }
+
+  function wireUpLightbox() {
+    const dialog = document.getElementById('photo-lightbox');
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    dialog.addEventListener('click', e => { if (e.target === dialog) closeLightbox(); });
+
+    const timeline = document.getElementById('diario-timeline');
+    timeline.addEventListener('click', e => {
+      const photo = e.target.closest('.photo');
+      if (!photo) return;
+      const img = photo.querySelector('img');
+      if (img) openLightbox(img.src, img.alt);
+    });
+    timeline.addEventListener('keydown', e => {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      const photo = e.target.closest('.photo');
+      if (!photo) return;
+      e.preventDefault();
+      const img = photo.querySelector('img');
+      if (img) openLightbox(img.src, img.alt);
+    });
+  }
+
   function wireUpTabs() {
     document.querySelectorAll('.tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -232,6 +266,7 @@ if (typeof module !== 'undefined' && module.exports) {
     renderDiarioTimeline();
     renderProgrammaList();
     wireUpModal();
+    wireUpLightbox();
     wireUpTabs();
     openFromHash();
   });
