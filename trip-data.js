@@ -2,7 +2,7 @@
 // Il piano di ogni giorno viene dalle guide Notion "Viaggi" (Norvegia, camper Spagna del Nord)
 // dove esistono; altrimenti resta solo la logistica finché non si scrive il diario.
 
-const giornoCorrente = 1; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
+const giornoCorrente = 2; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
 
 const planBlocks = {
   "bergen-5ago": [
@@ -137,7 +137,16 @@ const days = [
       ]
     } },
   { n: 2, date: "2026-08-04", tappa: "Danzica",
-    logistica: ["Alloggio: Luxury Aura, Danzica"], planBlock: null, diario: null },
+    logistica: ["Alloggio: Luxury Aura, Danzica"], planBlock: null,
+    diario: {
+      titolo: "Giornata a Danzica",
+      foto: ["foto/giorno2-1.jpg", "foto/giorno2-2.jpg", "foto/giorno2-3.jpg", "foto/giorno2-4.jpg", "foto/giorno2-5.jpg", "foto/giorno2-6.jpg"],
+      paragrafi: [
+        "Oggi giornata di visita a Danzica: otto pasti fatti, tra pranzo al museo, trippa alle quattro del pomeriggio e pierogi.",
+        "Nel tempo libero abbiamo anche visitato la città — centro davvero carino e vivibile, molto bella la zona intorno al fiume.",
+        "Momento culturale a Westerplatte, dove ha avuto inizio la seconda guerra mondiale (ottime bacche in zona)."
+      ]
+    } },
   { n: 3, date: "2026-08-05", tappa: "Danzica → Bergen",
     logistica: [
       { text: "Volo Wizz Air W6 1757, 12:20 → 14:15 (Danzica → Bergen)", url: "https://www.flightradar24.com/data/flights/w61757" },
