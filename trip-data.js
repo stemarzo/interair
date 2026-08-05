@@ -2,7 +2,7 @@
 // Il piano di ogni giorno viene dalle guide Notion "Viaggi" (Norvegia, camper Spagna del Nord)
 // dove esistono; altrimenti resta solo la logistica finché non si scrive il diario.
 
-const giornoCorrente = 2; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
+const giornoCorrente = 3; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
 
 const planBlocks = {
   "bergen-5ago": [
@@ -152,7 +152,16 @@ const days = [
       { text: "Volo Wizz Air W6 1757, 12:20 → 14:15 (Danzica → Bergen)", url: "https://www.flightradar24.com/data/flights/w61757" },
       "Alloggio: Årstad, Bergen"
     ],
-    planBlock: "bergen-5ago", diario: null },
+    planBlock: "bergen-5ago",
+    diario: {
+      titolo: "Arrivo in Norvegia",
+      foto: ["foto/giorno3-1.jpg", "foto/giorno3-2.jpg", "foto/giorno3-3.jpg", "foto/giorno3-4.jpg", "foto/giorno3-5.jpg"],
+      paragrafi: [
+        "Giorno di trasferimento: siamo arrivati in Norvegia, in particolare a Bergen, dopo aver disfatto lo zaino per evitare il supplemento bagaglio.",
+        "Prima spesa della vacanza, per cercare di sopravvivere in Norvegia e tenerci i soldi per i biglietti di un fantastico Brann - Apollon Limassol.",
+        "Ci aspetta una settimana piovosa, di cui oggi abbiamo già avuto un assaggio."
+      ]
+    } },
   { n: 4, date: "2026-08-06", tappa: "Bergen",
     logistica: ["Ritiro auto a noleggio, ore 10:00", "Alloggio: Årstad, Bergen"], planBlock: "bergen-6ago", diario: null },
   { n: 5, date: "2026-08-07", tappa: "Bergen → Eidfjord",
