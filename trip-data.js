@@ -158,7 +158,7 @@ const days = [
       foto: ["foto/giorno3-1.jpg", "foto/giorno3-2.jpg", "foto/giorno3-3.jpg", "foto/giorno3-4.jpg", "foto/giorno3-5.jpg"],
       paragrafi: [
         "Giorno di trasferimento: siamo arrivati in Norvegia, in particolare a Bergen, dopo aver disfatto lo zaino per evitare il supplemento bagaglio.",
-        "Prima spesa della vacanza, per cercare di sopravvivere in Norvegia e tenerci i soldi per i biglietti di un fantastico Brann - Apollon Limassol.",
+        "Prima spesa fatta, per cercare di sopravvivere in Norvegia e tenerci i soldi per i biglietti di un fantastico Brann - Apollon Limassol, che Teo ha tirato fuori dal cilindro salvandoci un pomeriggio bagnato.",
         "Ci aspetta una settimana piovosa, di cui oggi abbiamo già avuto un assaggio."
       ]
     } },
