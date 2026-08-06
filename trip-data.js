@@ -2,7 +2,7 @@
 // Il piano di ogni giorno viene dalle guide Notion "Viaggi" (Norvegia, camper Spagna del Nord)
 // dove esistono; altrimenti resta solo la logistica finché non si scrive il diario.
 
-const giornoCorrente = 3; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
+const giornoCorrente = 4; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
 
 const planBlocks = {
   "bergen-5ago": [
@@ -163,7 +163,16 @@ const days = [
       ]
     } },
   { n: 4, date: "2026-08-06", tappa: "Bergen",
-    logistica: ["Ritiro auto a noleggio, ore 10:00", "Alloggio: Årstad, Bergen"], planBlock: "bergen-6ago", diario: null },
+    logistica: ["Ritiro auto a noleggio, ore 10:00", "Alloggio: Årstad, Bergen"], planBlock: "bergen-6ago",
+    diario: {
+      titolo: "Le due anime di Bergen",
+      foto: ["foto/giorno4-1.jpg", "foto/giorno4-2.jpg", "foto/giorno4-3.jpg", "foto/giorno4-4.jpg", "foto/giorno4-5.jpg", "foto/giorno4-6.jpg", "foto/giorno4-7.jpg"],
+      paragrafi: [
+        "Oggi giornata interamente dedicata a Bergen: la mattina comincia con un'emorragia data dal noleggio auto, che ci servirà nei prossimi giorni.",
+        "Da mezzogiorno ci siamo dedicati alle due anime della città — quella del porto e del centro (più turistica), e poi su per il percorso di allenamento dei bergensi, 900 scalini per goderci il panorama dall'alto (più autentica).",
+        "La serata è finita con una bella bistecca di balena cucinata dai nostri chef (non abbiamo fatto la foto)."
+      ]
+    } },
   { n: 5, date: "2026-08-07", tappa: "Bergen → Eidfjord",
     logistica: ["Trasferimento in auto verso l'Hardangerfjord (~3h)", "Arrivo a Eidfjord nel pomeriggio"],
     planBlock: "eidfjord-transfer-7ago", diario: null },
