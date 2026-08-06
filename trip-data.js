@@ -5,27 +5,21 @@
 const giornoCorrente = 4; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
 
 const planBlocks = {
+  "danzica-4ago": [
+    { nome: "Fontana di Nettuno", dettaglio: "nel cuore della Città Vecchia." },
+    { nome: "Punto panoramico", dettaglio: "vista dall'alto sul fiume Motława e sul porto." },
+    { nome: "Westerplatte", dettaglio: "il luogo dove ha avuto inizio la seconda guerra mondiale." },
+    { nome: "Giro in centro", dettaglio: "passeggiata nella Città Vecchia." }
+  ],
   "bergen-5ago": [
-    { nome: "Bryggen", dettaglio: "il vecchio molo anseatico, patrimonio UNESCO.",
-      difficolta: "Facile", tempo: "30-45 min a piedi", prenotazione: "no", costo: "gratis" },
-    { nome: "Fisketorget", dettaglio: "il mercato del pesce — bello da vedere, carissimo da mangiare.",
-      difficolta: "Facile", prenotazione: "no", costo: "gratis da visitare (cibo caro)" },
-    { nome: "Torgallmenningen", dettaglio: "passeggiata serale nel viale principale.",
-      difficolta: "Facile", prenotazione: "no", costo: "gratis" }
+    { nome: "Partita Brann - Apollon Limassol", dettaglio: "allo stadio, sotto la pioggia." },
+    { nome: "Bryggen", dettaglio: "il vecchio molo anseatico, patrimonio UNESCO, di sera." }
   ],
   "bergen-6ago": [
-    { nome: "Fløyen a piedi", dettaglio: "la montagna simbolo di Bergen, sentiero ben segnato dal centro.",
-      difficolta: "Facile/medio", tempo: "45-60 min salita", prenotazione: "no",
-      costo: "gratis (funicolare Fløibanen ~17€ a/r se si preferisce)" },
-    { nome: "Sentiero Vidden (Fløyen → Ulriken)", dettaglio: "trekking vero anche in città, panoramico, non tecnico.",
-      difficolta: "Medio-alto per la durata", tempo: "5-6 ore", prenotazione: "no",
-      costo: "gratis (cabinovia Ulriksbanen in discesa opzionale, ~17-23€)" },
-    { nome: "Ulriken solo cabinovia", dettaglio: "salita in 10 minuti, sentieri facili in cima, panorama senza il trekking lungo.",
-      difficolta: "Facile", tempo: "mezza giornata", prenotazione: "no", costo: "~32-37€ a/r" },
-    { nome: "Chicca — Stoltzekleiven", dettaglio: "scalinata di pietra ripidissima (~900 gradini) a Sandviken, l'allenamento preferito dai bergensi.",
-      difficolta: "Difficile per la pendenza", tempo: "15-30 min salita", prenotazione: "no", costo: "gratis" },
-    { nome: "Piano B pioggia", dettaglio: "KODE (musei d'arte, a pagamento) o Bergenhus Fortress (fortezza storica, gratis).",
-      prenotazione: "no" }
+    { nome: "Porto e centro storico", dettaglio: "passeggiata tra il porto e la città vecchia di Bergen." },
+    { nome: "Stoltzekleiven", dettaglio: "scalinata di pietra ripidissima (~900 gradini) a Sandviken, l'allenamento preferito dai bergensi." },
+    { nome: "Fløyen", dettaglio: "panorama sulla città e sul fiordo dall'alto, raggiunta dopo la scalinata." },
+    { nome: "Cena", dettaglio: "bistecca di balena." }
   ],
   "eidfjord-transfer-7ago": [
     { nome: "Steindalsfossen", dettaglio: "cascata che si attraversa a piedi da dietro, vicino Norheimsund.",
@@ -137,7 +131,7 @@ const days = [
       ]
     } },
   { n: 2, date: "2026-08-04", tappa: "Danzica",
-    logistica: ["Alloggio: Luxury Aura, Danzica"], planBlock: null,
+    logistica: ["Alloggio: Luxury Aura, Danzica"], planBlock: "danzica-4ago",
     diario: {
       titolo: "Giornata a Danzica",
       foto: ["foto/giorno2-1.jpg", "foto/giorno2-2.jpg", "foto/giorno2-3.jpg", "foto/giorno2-4.jpg", "foto/giorno2-5.jpg", "foto/giorno2-6.jpg"],
