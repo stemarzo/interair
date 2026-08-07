@@ -2,7 +2,7 @@
 // Il piano di ogni giorno viene dalle guide Notion "Viaggi" (Norvegia, camper Spagna del Nord)
 // dove esistono; altrimenti resta solo la logistica finché non si scrive il diario.
 
-const giornoCorrente = 4; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
+const giornoCorrente = 5; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
 
 const planBlocks = {
   "danzica-4ago": [
@@ -169,7 +169,17 @@ const days = [
     } },
   { n: 5, date: "2026-08-07", tappa: "Bergen → Eidfjord",
     logistica: ["Trasferimento in auto verso l'Hardangerfjord (~3h)", "Arrivo a Eidfjord nel pomeriggio"],
-    planBlock: "eidfjord-transfer-7ago", diario: null },
+    planBlock: "eidfjord-transfer-7ago",
+    diario: {
+      titolo: "Verso Eidfjord",
+      foto: ["foto/giorno5-1.jpg", "foto/giorno5-2.jpg", "foto/giorno5-3.jpg", "foto/giorno5-4.jpg", "foto/giorno5-5.jpg", "foto/giorno5-6.jpg", "foto/giorno5-7.jpg", "foto/giorno5-8.jpg", "foto/giorno5-9.jpg"],
+      paragrafi: [
+        "Oggi giornata di trasferimento, questa volta in macchina: siamo partiti in mattinata da Bergen verso una Norvegia meno abitata, verso Eidfjord.",
+        "In particolare abbiamo una casa con il tetto di torba, un po' dispersa nel nulla, a 30 minuti dalla città.",
+        "Il viaggio è iniziato tra cascate e rotonde nelle gallerie, per poi fare nel pomeriggio un impervio trekking per vedere il fiordo dall'alto.",
+        "In serata, un primo assaggio della spesa norvegese, all'unico supermercatino aperto non discount."
+      ]
+    } },
   { n: 6, date: "2026-08-08", tappa: "Eidfjord", logistica: [], planBlock: "eidfjord-opzioni", diario: null },
   { n: 7, date: "2026-08-09", tappa: "Eidfjord", logistica: [], planBlock: "eidfjord-opzioni", diario: null },
   { n: 8, date: "2026-08-10", tappa: "Eidfjord", logistica: [], planBlock: "eidfjord-opzioni", diario: null },
