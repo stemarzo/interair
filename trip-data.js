@@ -2,7 +2,7 @@
 // Il piano di ogni giorno viene dalle guide Notion "Viaggi" (Norvegia, camper Spagna del Nord)
 // dove esistono; altrimenti resta solo la logistica finché non si scrive il diario.
 
-const giornoCorrente = 6; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
+const giornoCorrente = 7; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
 
 const planBlocks = {
   "danzica-4ago": [
@@ -24,13 +24,15 @@ const planBlocks = {
   "eidfjord-transfer-7ago": [
     { nome: "Steindalsfossen", dettaglio: "cascata che si attraversa a piedi da dietro, vicino Norheimsund.",
       difficolta: "Facile", tempo: "pochi minuti a piedi", prenotazione: "no", costo: "gratis, imperdibile" },
-    { nome: "Chicca — Hardangerbrua", dettaglio: "il ponte sospeso più lungo di Norvegia, sosta fotografica vicino Eidfjord.",
-      difficolta: "Facile", tempo: "10-15 min", prenotazione: "no", costo: "gratis" },
-    { nome: "Vøringsfossen", dettaglio: "una delle cascate più famose di Norvegia (182 m), piattaforma raggiungibile con breve camminata.",
-      difficolta: "Facile", tempo: "15-30 min", prenotazione: "no", costo: "gratis (parcheggio a pagamento, pochi NOK)" }
+    { nome: "Hardangerbrua", dettaglio: "il ponte sospeso più lungo di Norvegia, sosta fotografica vicino Eidfjord." }
   ],
   "eidfjord-8ago": [
     { nome: "Trolltunga", dettaglio: "roccia sospesa sopra il fiordo, raggiunta con una camminata lunga e impegnativa, sotto pioggia e freddo per 7 ore." }
+  ],
+  "eidfjord-9ago": [
+    { nome: "Vøringsfossen", dettaglio: "la cascata più alta di Norvegia." },
+    { nome: "Diga", dettaglio: "una diga sull'altro lato di Eidfjord, che aveva incuriosito nei giorni scorsi." },
+    { nome: "Giretto sulla RV7", dettaglio: "strada panoramica, con cena in tre per 45 euro." }
   ],
   "eidfjord-opzioni": [
     { nome: "Giorno cascate e ghiacciai", dettaglio: "Husedalen (4 cascate da Kinsarvik, versione corta 2-3 ore o lunga fino a Hardangervidda 5-6 ore), Buarbreen (lingua del ghiacciaio, corde/catene) o Bondhusbreen/Folgefonna (vista su un altro ghiacciaio, più semplice).",
@@ -189,7 +191,16 @@ const days = [
         "A differenza del Canada, qui indiani e cinesi si spingono anche su camminate più lunghe di 10 minuti."
       ]
     } },
-  { n: 7, date: "2026-08-09", tappa: "Eidfjord", logistica: [], planBlock: "eidfjord-opzioni", diario: null },
+  { n: 7, date: "2026-08-09", tappa: "Eidfjord", logistica: [], planBlock: "eidfjord-9ago",
+    diario: {
+      titolo: "Giornata di ricarica",
+      foto: ["foto/giorno7-1.jpg", "foto/giorno7-2.jpg", "foto/giorno7-3.jpg", "foto/giorno7-4.jpg", "foto/giorno7-5.jpg", "foto/giorno7-6.jpg"],
+      paragrafi: [
+        "Dopo due o tre giorni impegnativi, oggi abbiamo recuperato un po' le energie. Dirigendoci verso destra da casa nostra, abbiamo visitato Vøringsfossen, la cascata più alta di Norvegia.",
+        "Spostandoci poi verso sinistra, abbiamo visitato una diga che ci aveva incuriosito nei giorni scorsi.",
+        "Dopo una buona pasta dolce con acciughe, siamo risaliti in macchina per un giretto sulla strada panoramica RV7, barboneggiando e spendendo 45 euro per una cena in tre."
+      ]
+    } },
   { n: 8, date: "2026-08-10", tappa: "Eidfjord", logistica: [], planBlock: "eidfjord-opzioni", diario: null },
   { n: 9, date: "2026-08-11", tappa: "Eidfjord → Bergen → Oslo",
     logistica: ["Trasferimento Eidfjord → Bergen (2,5-3h di guida)", "Riconsegna auto a noleggio, ore 15:00", "Volo Norwegian 16:20 → 17:15 (Bergen → Oslo)"],
