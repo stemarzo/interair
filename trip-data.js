@@ -2,7 +2,7 @@
 // Il piano di ogni giorno viene dalle guide Notion "Viaggi" (Norvegia, camper Spagna del Nord)
 // dove esistono; altrimenti resta solo la logistica finché non si scrive il diario.
 
-const giornoCorrente = 5; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
+const giornoCorrente = 6; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
 
 const planBlocks = {
   "danzica-4ago": [
@@ -29,11 +29,10 @@ const planBlocks = {
     { nome: "Vøringsfossen", dettaglio: "una delle cascate più famose di Norvegia (182 m), piattaforma raggiungibile con breve camminata.",
       difficolta: "Facile", tempo: "15-30 min", prenotazione: "no", costo: "gratis (parcheggio a pagamento, pochi NOK)" }
   ],
+  "eidfjord-8ago": [
+    { nome: "Trolltunga", dettaglio: "roccia sospesa sopra il fiordo, raggiunta con una camminata lunga e impegnativa, sotto pioggia e freddo per 7 ore." }
+  ],
   "eidfjord-opzioni": [
-    { nome: "Trolltunga", dettaglio: "il trekking più iconico della zona, da P2 Skjeggedal (27 km a/r) o con navetta P2→P3 (20 km). Se il meteo è brutto: Ringedalsvatnet, lago turchese vicino P1 Tyssedal (facile/medio, 1-2 ore, gratis).",
-      difficolta: "Difficile (lunghezza + dislivello)", tempo: "7-12 ore",
-      prenotazione: "consigliata per la navetta (trolltunga.com)",
-      costo: "parcheggio P2 ~50€/auto/giorno, navetta ~23€ a testa a/r" },
     { nome: "Giorno cascate e ghiacciai", dettaglio: "Husedalen (4 cascate da Kinsarvik, versione corta 2-3 ore o lunga fino a Hardangervidda 5-6 ore), Buarbreen (lingua del ghiacciaio, corde/catene) o Bondhusbreen/Folgefonna (vista su un altro ghiacciaio, più semplice).",
       difficolta: "da facile/medio a difficile secondo l'opzione", tempo: "2-6 ore", prenotazione: "no",
       costo: "gratis (parcheggio Buarbreen ~14€; tour guidato sul ghiaccio vero richiede prenotazione)" },
@@ -180,7 +179,16 @@ const days = [
         "In serata, un primo assaggio della spesa norvegese, all'unico supermercatino aperto non discount."
       ]
     } },
-  { n: 6, date: "2026-08-08", tappa: "Eidfjord", logistica: [], planBlock: "eidfjord-opzioni", diario: null },
+  { n: 6, date: "2026-08-08", tappa: "Eidfjord", logistica: [], planBlock: "eidfjord-8ago",
+    diario: {
+      titolo: "Trolltunga",
+      foto: ["foto/giorno6-1.jpg", "foto/giorno6-2.jpg", "foto/giorno6-3.jpg"],
+      paragrafi: [
+        "Giornata impegnativa, con la sveglia alle 4:30 per arrivare a un buon orario ed evitare troppa gente a uno dei punti simbolo della zona: il Trolltunga, una roccia sospesa sopra il fiordo.",
+        "Camminata impegnativa, perché lunga e perché ci siamo presi 7 ore di pioggia e freddo.",
+        "A differenza del Canada, qui indiani e cinesi si spingono anche su camminate più lunghe di 10 km."
+      ]
+    } },
   { n: 7, date: "2026-08-09", tappa: "Eidfjord", logistica: [], planBlock: "eidfjord-opzioni", diario: null },
   { n: 8, date: "2026-08-10", tappa: "Eidfjord", logistica: [], planBlock: "eidfjord-opzioni", diario: null },
   { n: 9, date: "2026-08-11", tappa: "Eidfjord → Bergen → Oslo",
