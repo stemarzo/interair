@@ -186,7 +186,7 @@ const days = [
       paragrafi: [
         "Giornata impegnativa, con la sveglia alle 4:30 per arrivare a un buon orario ed evitare troppa gente a uno dei punti simbolo della zona: il Trolltunga, una roccia sospesa sopra il fiordo.",
         "Camminata impegnativa, perché lunga e perché ci siamo presi 7 ore di pioggia e freddo.",
-        "A differenza del Canada, qui indiani e cinesi si spingono anche su camminate più lunghe di 10 km."
+        "A differenza del Canada, qui indiani e cinesi si spingono anche su camminate più lunghe di 10 minuti."
       ]
     } },
   { n: 7, date: "2026-08-09", tappa: "Eidfjord", logistica: [], planBlock: "eidfjord-opzioni", diario: null },
