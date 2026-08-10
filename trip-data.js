@@ -2,7 +2,7 @@
 // Il piano di ogni giorno viene dalle guide Notion "Viaggi" (Norvegia, camper Spagna del Nord)
 // dove esistono; altrimenti resta solo la logistica finché non si scrive il diario.
 
-const giornoCorrente = 7; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
+const giornoCorrente = 8; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
 
 const planBlocks = {
   "danzica-4ago": [
@@ -34,13 +34,10 @@ const planBlocks = {
     { nome: "Diga", dettaglio: "una diga sull'altro lato di Eidfjord, che aveva incuriosito nei giorni scorsi." },
     { nome: "Giretto sulla RV7", dettaglio: "strada panoramica, con cena in tre per 45 euro." }
   ],
-  "eidfjord-opzioni": [
-    { nome: "Giorno cascate e ghiacciai", dettaglio: "Husedalen (4 cascate da Kinsarvik, versione corta 2-3 ore o lunga fino a Hardangervidda 5-6 ore), Buarbreen (lingua del ghiacciaio, corde/catene) o Bondhusbreen/Folgefonna (vista su un altro ghiacciaio, più semplice).",
-      difficolta: "da facile/medio a difficile secondo l'opzione", tempo: "2-6 ore", prenotazione: "no",
-      costo: "gratis (parcheggio Buarbreen ~14€; tour guidato sul ghiaccio vero richiede prenotazione)" },
-    { nome: "Giorno Kjeåsen + Hardangerfjord", dettaglio: "sentiero verso una fattoria di montagna isolata (corde e scalini fissi) o solo la strada a singola corsia per arrivarci; Låtefossen (cascata doppia dalla strada); Tyssedal (museo idroelettrico) o Hardangervidda Natursenter come piano B pioggia.",
-      difficolta: "Difficile per Kjeåsen, facile per il resto", tempo: "1-2 ore per il sentiero", prenotazione: "no",
-      costo: "gratis (Tyssedal e Natursenter a pagamento)" }
+  "eidfjord-10ago": [
+    { nome: "Buarbreen", dettaglio: "camminata verso la lingua del ghiacciaio, circa due ore di macchina più il sentiero, tra freddo e pioggia con qualche schiarita." },
+    { nome: "Odda", dettaglio: "breve sosta in paese, non aveva un granché da offrire." },
+    { nome: "Pucciata nel fiordo", dettaglio: "per finire la giornata." }
   ],
   "eidfjord-partenza-11ago": [
     { nome: "Passeggiata breve del mattino", dettaglio: "ultima mattinata a Eidfjord prima del trasferimento verso Bergen — si parte entro le 12:00-12:30.",
@@ -201,7 +198,17 @@ const days = [
         "Dopo una buona pasta dolce con acciughe, siamo risaliti in macchina per un giretto sulla strada panoramica RV7, barboneggiando e spendendo 45 euro per una cena in tre."
       ]
     } },
-  { n: 8, date: "2026-08-10", tappa: "Eidfjord", logistica: [], planBlock: "eidfjord-opzioni", diario: null },
+  { n: 8, date: "2026-08-10", tappa: "Eidfjord", logistica: [], planBlock: "eidfjord-10ago",
+    diario: {
+      titolo: "Ghiacciaio Buarbreen",
+      foto: ["foto/giorno8-1.jpg", "foto/giorno8-2.jpg", "foto/giorno8-3.jpg", "foto/giorno8-4.jpg", "foto/giorno8-5.jpg"],
+      paragrafi: [
+        "Giornata iniziata presto la mattina: dopo due ore di macchina abbiamo cominciato la camminata che ci avrebbe portato al ghiacciaio.",
+        "Il meteo si è rivelato più soleggiato del solito, ma comunque anche oggi pieno di freddo e pioggia — le mani non si sentivano più.",
+        "Dopo un tardo pranzo a base di tonno in scatola a un supercharger, siamo tornati verso casa, dato che Odda non aveva un granché da offrire.",
+        "Per finire la giornata, una pucciata nel fiordo."
+      ]
+    } },
   { n: 9, date: "2026-08-11", tappa: "Eidfjord → Bergen → Oslo",
     logistica: ["Trasferimento Eidfjord → Bergen (2,5-3h di guida)", "Riconsegna auto a noleggio, ore 15:00", "Volo Norwegian 16:20 → 17:15 (Bergen → Oslo)"],
     planBlock: "eidfjord-partenza-11ago", diario: null },
