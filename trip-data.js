@@ -2,7 +2,7 @@
 // Il piano di ogni giorno viene dalle guide Notion "Viaggi" (Norvegia, camper Spagna del Nord)
 // dove esistono; altrimenti resta solo la logistica finché non si scrive il diario.
 
-const giornoCorrente = 9; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
+const giornoCorrente = 10; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
 
 const planBlocks = {
   "danzica-4ago": [
@@ -41,6 +41,11 @@ const planBlocks = {
   ],
   "eidfjord-partenza-11ago": [
     { nome: "Prima serata a Oslo", dettaglio: "giro fino all'Opera House, tra la movida universitaria." }
+  ],
+  "oslo-12ago": [
+    { nome: "Tour gratuito di Oslo", dettaglio: "Rådhuset, Akershus e il porto di Aker Brygge." },
+    { nome: "Cinnamon roll", dettaglio: "consigliato dalla guida, il migliore di Norvegia." },
+    { nome: "Museo Nazionale", dettaglio: "con L'urlo di Munch, seguito da una corsa in stazione." }
   ],
   "camper-14ago": [
     { nome: "Parte Vieja", dettaglio: "giro di pintxos nel centro storico di San Sebastián.",
@@ -224,7 +229,16 @@ const days = [
     logistica: [
       { text: "Volo Vueling VY8539, 21:25 → 00:55 (Oslo → Barcellona, atterraggio dopo mezzanotte)", url: "https://www.flightradar24.com/data/flights/vy8539" }
     ],
-    planBlock: null, diario: null },
+    planBlock: "oslo-12ago",
+    diario: {
+      titolo: "Rapido Oslo",
+      foto: ["foto/giorno10-1.jpg", "foto/giorno10-2.jpg", "foto/giorno10-3.jpg", "foto/giorno10-4.jpg", "foto/giorno10-5.jpg"],
+      paragrafi: [
+        "Giornata in cui ci siamo dedicati meglio a visitare Oslo, con l'appuntamento pomeridiano di un nuovo aereo verso Barcellona.",
+        "La mattina abbiamo optato per un tour gratuito di Oslo, per capire meglio la storia della città. Su consiglio della guida siamo andati poi a provare il cinnamomo più buono di Norvegia, per la felicità di Teo — solo dopo aver provato la Palestinian Cola.",
+        "Il nostro saluto alla Norvegia è stato una corsa in stazione per prendere il treno, dopo un prolisso Museo Nazionale con l'Urlo di Munch."
+      ]
+    } },
   { n: 11, date: "2026-08-13", tappa: "Barcellona → Bilbao",
     logistica: [
       "Atterraggio a Barcellona 00:55, notte breve",
