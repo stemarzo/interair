@@ -2,7 +2,7 @@
 // Il piano di ogni giorno viene dalle guide Notion "Viaggi" (Norvegia, camper Spagna del Nord)
 // dove esistono; altrimenti resta solo la logistica finché non si scrive il diario.
 
-const giornoCorrente = 8; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
+const giornoCorrente = 9; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
 
 const planBlocks = {
   "danzica-4ago": [
@@ -40,8 +40,7 @@ const planBlocks = {
     { nome: "Pucciata nel fiordo", dettaglio: "per finire la giornata." }
   ],
   "eidfjord-partenza-11ago": [
-    { nome: "Passeggiata breve del mattino", dettaglio: "ultima mattinata a Eidfjord prima del trasferimento verso Bergen — si parte entro le 12:00-12:30.",
-      difficolta: "Facile", tempo: "poco tempo", prenotazione: "no", costo: "gratis" }
+    { nome: "Prima serata a Oslo", dettaglio: "giro fino all'Opera House, tra la movida universitaria." }
   ],
   "camper-14ago": [
     { nome: "Parte Vieja", dettaglio: "giro di pintxos nel centro storico di San Sebastián.",
@@ -211,7 +210,16 @@ const days = [
     } },
   { n: 9, date: "2026-08-11", tappa: "Eidfjord → Bergen → Oslo",
     logistica: ["Trasferimento Eidfjord → Bergen (2,5-3h di guida)", "Riconsegna auto a noleggio, ore 15:00", "Volo Norwegian 16:20 → 17:15 (Bergen → Oslo)"],
-    planBlock: "eidfjord-partenza-11ago", diario: null },
+    planBlock: "eidfjord-partenza-11ago",
+    diario: {
+      titolo: "Ultima tappa norvegese",
+      foto: ["foto/giorno9-1.jpg", "foto/giorno9-2.jpg", "foto/giorno9-3.jpg", "foto/giorno9-4.jpg", "foto/giorno9-5.jpg"],
+      paragrafi: [
+        "Oggi ultimo spostamento in Norvegia: da Eidfjord siamo andati verso Oslo, con una tappa intermedia a Bergen per lasciare l'auto, e poi in volo verso Oslo.",
+        "Siamo arrivati a Oslo e la città sembra molto più europea, più multiculturale. Anche universitaria: la sera c'era una festa dell'università.",
+        "Una città che non sembra avere nulla di caratteristico come edificio, tranne l'Opera House."
+      ]
+    } },
   { n: 10, date: "2026-08-12", tappa: "Oslo",
     logistica: [
       { text: "Volo Vueling VY8539, 21:25 → 00:55 (Oslo → Barcellona, atterraggio dopo mezzanotte)", url: "https://www.flightradar24.com/data/flights/vy8539" }
