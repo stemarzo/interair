@@ -2,7 +2,7 @@
 // Il piano di ogni giorno viene dalle guide Notion "Viaggi" (Norvegia, camper Spagna del Nord)
 // dove esistono; altrimenti resta solo la logistica finché non si scrive il diario.
 
-const giornoCorrente = 10; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
+const giornoCorrente = 11; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
 
 const planBlocks = {
   "danzica-4ago": [
@@ -46,6 +46,9 @@ const planBlocks = {
     { nome: "Tour gratuito di Oslo", dettaglio: "Rådhuset, Akershus e il porto di Aker Brygge." },
     { nome: "Cinnamon roll", dettaglio: "consigliato dalla guida, il migliore di Norvegia." },
     { nome: "Museo Nazionale", dettaglio: "con L'urlo di Munch, seguito da una corsa in stazione." }
+  ],
+  "bilbao-13ago": [
+    { nome: "Serata a Bilbao", dettaglio: "dopo l'odissea del bus da Barcellona." }
   ],
   "camper-14ago": [
     { nome: "Parte Vieja", dettaglio: "giro di pintxos nel centro storico di San Sebastián.",
@@ -241,11 +244,22 @@ const days = [
     } },
   { n: 11, date: "2026-08-13", tappa: "Barcellona → Bilbao",
     logistica: [
-      "Atterraggio a Barcellona 00:55, notte breve",
-      { text: "Volo Vueling VY1422, 09:10 → 10:25 (Barcellona → Bilbao)", url: "https://www.flightradar24.com/data/flights/vy1422" },
+      "Atterraggio a Barcellona in ritardo di 3h: coincidenza persa per Bilbao",
+      "Volo Barcellona → Bilbao cancellato",
+      "8h di bus da Barcellona a Bilbao, attraverso la Spagna centrale",
       "Pernottamento del 13-14 a Bilbao: ancora da organizzare"
     ],
-    planBlock: null, diario: null },
+    planBlock: "bilbao-13ago",
+    diario: {
+      titolo: "Sfiga",
+      foto: ["foto/giorno11-1.jpg", "foto/giorno11-2.jpg", "foto/giorno11-3.jpg", "foto/giorno11-4.jpg", "foto/giorno11-5.jpg", "foto/giorno11-6.jpg"],
+      paragrafi: [
+        "Dopo aver saltato il giro a Barcellona per un aereo in ritardo di 3 ore, ci è mancata la coincidenza per arrivare a Bilbao.",
+        "Dopo aver testato il comodo pavimento dell'aeroporto, ci arriva la notizia che il volo è stato cancellato. Unica opzione: prendere il bus fino a Bilbao.",
+        "Risultato: 8 ore disperse tra deserto, radure e autogrill, in un bus vuoto. Nella sfiga, ci siamo fatti un giro non previsto per la Spagna centrale.",
+        "Arrivati a Bilbao, abbiamo passato la serata in città — una città che sinceramente non ho ancora capito: mi piace, ma non mi piace."
+      ]
+    } },
   { n: 12, date: "2026-08-14", tappa: "Bilbao → San Sebastián",
     logistica: ["Ritiro camper a Zamudio (Bilbao), ore 15:00 — già prenotato (Roadsurfer)", "Pernottamento: area camper San Sebastián (Camperstop Donosti)"],
     planBlock: "camper-14ago", diario: null },
