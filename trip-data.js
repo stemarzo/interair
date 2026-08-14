@@ -2,7 +2,7 @@
 // Il piano di ogni giorno viene dalle guide Notion "Viaggi" (Norvegia, camper Spagna del Nord)
 // dove esistono; altrimenti resta solo la logistica finché non si scrive il diario.
 
-const giornoCorrente = 11; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
+const giornoCorrente = 12; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
 
 const planBlocks = {
   "danzica-4ago": [
@@ -51,8 +51,9 @@ const planBlocks = {
     { nome: "Serata a Bilbao", dettaglio: "dopo l'odissea del bus da Barcellona." }
   ],
   "camper-14ago": [
-    { nome: "Parte Vieja", dettaglio: "giro di pintxos nel centro storico di San Sebastián.",
-      difficolta: "Facile", prenotazione: "no", costo: "pintxos ~3-4€ l'uno, cena in giro ~15-25€ a testa" }
+    { nome: "Casco Viejo", dettaglio: "giretto nel centro antico di Bilbao, tra pintxos e maglie da calcio tarocche." },
+    { nome: "Guggenheim", dettaglio: "il museo e la Maman di Louise Bourgeois, dall'esterno." },
+    { nome: "Ritiro del camper", dettaglio: "a Zamudio, con un check-in più lungo del previsto." }
   ],
   "camper-15ago": [
     { nome: "Monte Igueldo", dettaglio: "funicolare + belvedere su La Concha.",
@@ -260,9 +261,18 @@ const days = [
         "Arrivati a Bilbao, abbiamo passato la serata in città — una città che sinceramente non ho ancora capito: mi piace, ma non mi piace."
       ]
     } },
-  { n: 12, date: "2026-08-14", tappa: "Bilbao → San Sebastián",
-    logistica: ["Ritiro camper a Zamudio (Bilbao), ore 15:00 — già prenotato (Roadsurfer)", "Pernottamento: area camper San Sebastián (Camperstop Donosti)"],
-    planBlock: "camper-14ago", diario: null },
+  { n: 12, date: "2026-08-14", tappa: "Bilbao → Laredo",
+    logistica: ["Ritiro camper a Zamudio (Bilbao), ore 15:00 — già prenotato (Roadsurfer)", "Pernottamento: Laredo"],
+    planBlock: "camper-14ago",
+    diario: {
+      titolo: "Camperizzati",
+      foto: ["foto/giorno12-1.jpg", "foto/giorno12-2.jpg", "foto/giorno12-3.jpg", "foto/giorno12-4.jpg", "foto/giorno12-5.jpg"],
+      paragrafi: [
+        "Svegliati nel nostro giaciglio di Bilbao, ci siamo fatti un giretto per il centro antico tra pintxos e maglie da calcio tarocche.",
+        "È arrivato poi il momento del camper: dopo 2 ore di check-in siamo riusciti a partire, e a trovare un primo giaciglio per la notte a Laredo, molto molto carina.",
+        "Vedremo questo camper come andrà."
+      ]
+    } },
   { n: 13, date: "2026-08-15", tappa: "San Sebastián e costa basca",
     logistica: ["Pernottamento: Santander o Castro Urdiales"], planBlock: "camper-15ago", diario: null },
   { n: 14, date: "2026-08-16", tappa: "Santander",
