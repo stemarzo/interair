@@ -2,7 +2,7 @@
 // Il piano di ogni giorno viene dalle guide Notion "Viaggi" (Norvegia, camper Spagna del Nord)
 // dove esistono; altrimenti resta solo la logistica finché non si scrive il diario.
 
-const giornoCorrente = 12; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
+const giornoCorrente = 13; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
 
 const planBlocks = {
   "danzica-4ago": [
@@ -56,14 +56,8 @@ const planBlocks = {
     { nome: "Ritiro del camper", dettaglio: "a Zamudio, con un check-in più lungo del previsto." }
   ],
   "camper-15ago": [
-    { nome: "Monte Igueldo", dettaglio: "funicolare + belvedere su La Concha.",
-      difficolta: "Facile", tempo: "mezza mattina", prenotazione: "no", costo: "~4,50€ a/r a testa" },
-    { nome: "Spiaggia La Concha", dettaglio: "la spiaggia simbolo di San Sebastián.",
-      difficolta: "Facile", prenotazione: "no", costo: "gratis" },
-    { nome: "Zumaia", dettaglio: "formazioni rocciose flysch sul mare, location di Game of Thrones.",
-      difficolta: "Facile", tempo: "1 ora", prenotazione: "no", costo: "gratis" },
-    { nome: "Getaria", dettaglio: "paese di pescatori, patria di Juan Sebastián Elcano.",
-      difficolta: "Facile", tempo: "1 ora", prenotazione: "no", costo: "gratis" }
+    { nome: "Laredo", dettaglio: "partenza a rilento, giro del paese dove hanno pernottato e pranzo in un buon ristorante scovato da Teo." },
+    { nome: "Santander", dettaglio: "visita espressa della capitale della Cantabria, tra la spiaggia e il Centro Botín di Renzo Piano." }
   ],
   "camper-16ago": [
     { nome: "Península de la Magdalena", dettaglio: "parco + Palacio Real (esterno).",
@@ -273,8 +267,17 @@ const days = [
         "Vedremo questo camper come andrà."
       ]
     } },
-  { n: 13, date: "2026-08-15", tappa: "San Sebastián e costa basca",
-    logistica: ["Pernottamento: Santander o Castro Urdiales"], planBlock: "camper-15ago", diario: null },
+  { n: 13, date: "2026-08-15", tappa: "Laredo → Santander",
+    logistica: ["Pernottamento: Santander o Castro Urdiales"], planBlock: "camper-15ago",
+    diario: {
+      titolo: "Un ferragosto saporito",
+      foto: ["foto/giorno13-1.jpg", "foto/giorno13-2.jpg", "foto/giorno13-3.jpg", "foto/giorno13-4.jpg", "foto/giorno13-5.jpg", "foto/giorno13-6.jpg", "foto/giorno13-7.jpg"],
+      paragrafi: [
+        "Dopo la prima notte di camper siamo partiti a rilento e abbiamo visitato il paese dove abbiamo pernottato, imbattendoci grazie a Teo in un buon ristorante.",
+        "Dopodiché siamo andati alla volta di Santander per fare una visita espressa della capitale della Cantabria, e tra spiagge ed edifici di Renzo Piano siamo ripartiti verso un nuovo spot notturno vista mare.",
+        "Il tutto condito con un bel profumino chimico del nostro bagno e di stalla, dato dai cavalli intorno."
+      ]
+    } },
   { n: 14, date: "2026-08-16", tappa: "Santander",
     logistica: ["Pernottamento: Santander, zona Parque de las Llamas o parcheggio a pagamento"], planBlock: "camper-16ago", diario: null },
   { n: 15, date: "2026-08-17", tappa: "Santillana del Mar, Comillas",
