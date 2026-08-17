@@ -2,7 +2,7 @@
 // Il piano di ogni giorno viene dalle guide Notion "Viaggi" (Norvegia, camper Spagna del Nord)
 // dove esistono; altrimenti resta solo la logistica finché non si scrive il diario.
 
-const giornoCorrente = 13; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
+const giornoCorrente = 14; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
 
 const planBlocks = {
   "danzica-4ago": [
@@ -60,13 +60,8 @@ const planBlocks = {
     { nome: "Santander", dettaglio: "visita espressa della capitale della Cantabria, tra la spiaggia e il Centro Botín di Renzo Piano." }
   ],
   "camper-16ago": [
-    { nome: "Península de la Magdalena", dettaglio: "parco + Palacio Real (esterno).",
-      difficolta: "Facile", tempo: "1-2 ore", prenotazione: "no", costo: "gratis il parco (palazzo a pagamento)" },
-    { nome: "Spiaggia El Sardinero", dettaglio: "la spiaggia principale di Santander.",
-      difficolta: "Facile", prenotazione: "no", costo: "gratis" },
-    { nome: "Racing Santander - Villarreal", dettaglio: "Primera División, 1ª giornata, ore 17:00 a El Sardinero — prima gara casalinga del Racing in Primera dopo 14 anni, comprare i biglietti il prima possibile.",
-      difficolta: "-", tempo: "ore 17:00", prenotazione: "obbligatoria (realracingclub.es o SeatPick)",
-      costo: "presumibile 30-90€ a testa" }
+    { nome: "Spiaggia consigliata da un surfista", dettaglio: "bagno con un po' di onde, per cambiare dalle solite camminate — top 5 nonostante le nuvole." },
+    { nome: "Paesini della Cantabria", dettaglio: "giro nel pomeriggio, fino a San Vicente de la Barquera." }
   ],
   "camper-17ago": [
     { nome: "Santillana del Mar", dettaglio: "borgo medievale, \"il paese delle tre bugie\" secondo Sartre.",
@@ -278,8 +273,17 @@ const days = [
         "Il tutto condito con un bel profumino chimico del nostro bagno e di stalla, dato dai cavalli intorno."
       ]
     } },
-  { n: 14, date: "2026-08-16", tappa: "Santander",
-    logistica: ["Pernottamento: Santander, zona Parque de las Llamas o parcheggio a pagamento"], planBlock: "camper-16ago", diario: null },
+  { n: 14, date: "2026-08-16", tappa: "Costa della Cantabria → San Vicente de la Barquera",
+    logistica: ["Pernottamento: San Vicente de la Barquera"], planBlock: "camper-16ago",
+    diario: {
+      titolo: "Top spiaggia onde",
+      foto: ["foto/giorno14-1.jpg", "foto/giorno14-2.jpg", "foto/giorno14-3.jpg", "foto/giorno14-4.jpg", "foto/giorno14-5.jpg"],
+      paragrafi: [
+        "Mattina partita scoprendo l'origine della puzza di ferragosto: abbiamo dormito di fianco a un depuratore. Potrei fermarmi qui.",
+        "La mattinata è passata in una spiaggia davvero molto bella, consigliata da un surfista: abbiamo fatto il bagno con un po' di onde, per cambiare rispetto alle solite camminate. Spiaggia top 5, anche se con le nuvole.",
+        "Il pomeriggio siamo andati verso i paesini della Cantabria, e abbiamo dormito con un'ottima vista su San Vicente de la Barquera."
+      ]
+    } },
   { n: 15, date: "2026-08-17", tappa: "Santillana del Mar, Comillas",
     logistica: ["Pernottamento: Torrelavega"], planBlock: "camper-17ago", diario: null },
   { n: 16, date: "2026-08-18", tappa: "Potes, Fuente Dé",
