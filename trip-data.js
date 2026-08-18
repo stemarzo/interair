@@ -2,7 +2,7 @@
 // Il piano di ogni giorno viene dalle guide Notion "Viaggi" (Norvegia, camper Spagna del Nord)
 // dove esistono; altrimenti resta solo la logistica finché non si scrive il diario.
 
-const giornoCorrente = 14; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
+const giornoCorrente = 15; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
 
 const planBlocks = {
   "danzica-4ago": [
@@ -63,12 +63,8 @@ const planBlocks = {
     { nome: "Spiaggia consigliata da un surfista", dettaglio: "bagno con un po' di onde, per cambiare dalle solite camminate — top 5 nonostante le nuvole." },
     { nome: "Paesini della Cantabria", dettaglio: "giro nel pomeriggio, fino a San Vicente de la Barquera." }
   ],
-  "camper-17ago": [
-    { nome: "Santillana del Mar", dettaglio: "borgo medievale, \"il paese delle tre bugie\" secondo Sartre.",
-      difficolta: "Facile", tempo: "1-2 ore", prenotazione: "no", costo: "gratis passeggiare (musei a pagamento)" },
-    { nome: "Comillas — El Capricho di Gaudí", dettaglio: "una delle opere di Gaudí fuori dalla Catalogna.",
-      difficolta: "Facile", tempo: "1 ora", prenotazione: "consigliata online in alta stagione",
-      costo: "7€ ingresso semplice / 10€ con audioguida" }
+  "cares-17ago": [
+    { nome: "Ruta del Cares", dettaglio: "sentiero facile ma molto lungo, lungo la gola del fiume Cares — il primo trekking senza pioggia." }
   ],
   "camper-18ago": [
     { nome: "Bus per l'amico verso Bilbao", dettaglio: "drop-off mattutino da Torrelavega, il suo volo da Bilbao è alle 18:20 — 8 corse dirette al giorno.",
@@ -284,8 +280,17 @@ const days = [
         "Il pomeriggio siamo andati verso i paesini della Cantabria, e abbiamo dormito con un'ottima vista su San Vicente de la Barquera."
       ]
     } },
-  { n: 15, date: "2026-08-17", tappa: "Santillana del Mar, Comillas",
-    logistica: ["Pernottamento: Torrelavega"], planBlock: "camper-17ago", diario: null },
+  { n: 15, date: "2026-08-17", tappa: "Garganta del Cares → San Vicente de la Barquera",
+    logistica: ["Pernottamento: San Vicente de la Barquera"], planBlock: "cares-17ago",
+    diario: {
+      titolo: "Picos de Europa",
+      foto: ["foto/giorno15-1.jpg", "foto/giorno15-2.jpg", "foto/giorno15-3.jpg", "foto/giorno15-4.jpg", "foto/giorno15-5.jpg", "foto/giorno15-6.jpg"],
+      paragrafi: [
+        "Giornata dove si torna a camminare: la mattina il tempo sembra nuvoloso e piovoso, una cosa a cui ormai ci siamo abituati. Poi, d'improvviso, diventa una giornata di sole.",
+        "Abbiamo fatto la Ruta del Cares, sentiero facile ma molto lungo che percorre la gola di un fiume — davvero molto bello, anche perché è stato il primo trekking senza pioggia.",
+        "La sera siamo tornati a San Vicente de la Barquera e abbiamo mangiato una bella grigliata di pesciolini."
+      ]
+    } },
   { n: 16, date: "2026-08-18", tappa: "Potes, Fuente Dé",
     logistica: ["Pernottamento: Potes"], planBlock: "camper-18ago", diario: null },
   { n: 17, date: "2026-08-19", tappa: "Garganta del Cares",
