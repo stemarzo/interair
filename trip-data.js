@@ -2,7 +2,7 @@
 // Il piano di ogni giorno viene dalle guide Notion "Viaggi" (Norvegia, camper Spagna del Nord)
 // dove esistono; altrimenti resta solo la logistica finché non si scrive il diario.
 
-const giornoCorrente = 15; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
+const giornoCorrente = 16; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
 
 const planBlocks = {
   "danzica-4ago": [
@@ -67,11 +67,10 @@ const planBlocks = {
     { nome: "Ruta del Cares", dettaglio: "sentiero facile ma molto lungo, lungo la gola del fiume Cares — il primo trekking senza pioggia." }
   ],
   "camper-18ago": [
-    { nome: "Bus per l'amico verso Bilbao", dettaglio: "drop-off mattutino da Torrelavega, il suo volo da Bilbao è alle 18:20 — 8 corse dirette al giorno.",
-      prenotazione: "verificare orario su alsa.es" },
-    { nome: "Teleférico di Fuente Dé", dettaglio: "salita panoramica sul massiccio dei Picos de Europa.",
-      difficolta: "Facile", tempo: "10:00-17:00, ultima salita 16:30", prenotazione: "no ma consigliato arrivare presto",
-      costo: "20€ a/r a testa (alta stagione)" }
+    { nome: "Rientro di Teo a Torrelavega", dettaglio: "colazione vista oceano, poi il passaggio sulla stradina più trafficata della Spagna del nord." },
+    { nome: "Sidrería", dettaglio: "pranzo prima della spiaggia." },
+    { nome: "Spiaggia a marea", dettaglio: "appare e scompare a seconda della marea." },
+    { nome: "Festa di paese", dettaglio: "una delle più particolari e trash mai viste." }
   ],
   "camper-19ago": [
     { nome: "Garganta del Cares", dettaglio: "trekking Poncebos → Caín e ritorno, ~70 gallerie scavate nella roccia, sentiero largo ma con salti a precipizio — portare acqua.",
@@ -291,8 +290,18 @@ const days = [
         "La sera siamo tornati a San Vicente de la Barquera e abbiamo mangiato una bella grigliata di pesciolini."
       ]
     } },
-  { n: 16, date: "2026-08-18", tappa: "Potes, Fuente Dé",
-    logistica: ["Pernottamento: Potes"], planBlock: "camper-18ago", diario: null },
+  { n: 16, date: "2026-08-18", tappa: "Addio a Teo → festa di paese",
+    logistica: ["Pernottamento: vicino alla festa di paese (multa per divieto di sosta)"], planBlock: "camper-18ago",
+    diario: {
+      titolo: "Addio Teo, maree, multe e feste",
+      foto: ["foto/giorno16-1.jpg", "foto/giorno16-2.jpg", "foto/giorno16-3.jpg", "foto/giorno16-4.jpg", "foto/giorno16-5.jpg"],
+      paragrafi: [
+        "Oggi ultima mattinata con Teo: colazione in uno splendido posto con vista sull'oceano, poi lo abbiamo riportato a Torrelavega, passando per la stradina più trafficata della Spagna del nord.",
+        "Pranzo in sidrería prima di andare in una spiaggia che, in base alla marea, appare e scompare.",
+        "Per non farci mancare nulla, abbiamo partecipato alla prima festa di paese — una delle più particolari e trash mai viste.",
+        "Per concludere, una bella multa per divieto di sosta."
+      ]
+    } },
   { n: 17, date: "2026-08-19", tappa: "Garganta del Cares",
     logistica: ["Pernottamento: area camper Llerau, Cangas de Onís"], planBlock: "camper-19ago", diario: null },
   { n: 18, date: "2026-08-20", tappa: "Covadonga, Ribadesella, Gijón",
