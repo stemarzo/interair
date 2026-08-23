@@ -2,7 +2,7 @@
 // Il piano di ogni giorno viene dalle guide Notion "Viaggi" (Norvegia, camper Spagna del Nord)
 // dove esistono; altrimenti resta solo la logistica finché non si scrive il diario.
 
-const giornoCorrente = 19; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
+const giornoCorrente = 20; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
 
 const planBlocks = {
   "danzica-4ago": [
@@ -94,6 +94,11 @@ const planBlocks = {
       prenotazione: "no", costo: "pochi euro a pincho" },
     { nome: "Aste Nagusia", dettaglio: "il festival grande di Bilbao, dal 22 al 30 agosto — coincide con questi giorni.",
       prenotazione: "no", costo: "gratis (evento di piazza)" }
+  ],
+  "bilbao-22ago": [
+    { nome: "Riconsegna del camper", dettaglio: "a Zamudio." },
+    { nome: "San Mamés", dettaglio: "Athletic Bilbao - Siviglia, partita balorda ma atmosfera bellissima." },
+    { nome: "Aste Nagusia", dettaglio: "il festival grande di Bilbao — città in strada fino alle 5-6 di mattina." }
   ]
 };
 
@@ -327,7 +332,16 @@ const days = [
       ]
     } },
   { n: 20, date: "2026-08-22", tappa: "Riconsegna camper, Bilbao",
-    logistica: ["Riconsegna camper a Zamudio, ore 12:00 — già prenotato (Roadsurfer)", "Alloggio: Bilbao (ultima notte)"], planBlock: "bilbao-extra", diario: null },
+    logistica: ["Riconsegna camper a Zamudio, ore 12:00 — già prenotato (Roadsurfer)", "Alloggio: Bilbao (ultima notte)"], planBlock: "bilbao-22ago",
+    diario: {
+      titolo: "Aupa Athletic",
+      foto: ["foto/giorno20-1.jpg", "foto/giorno20-2.jpg", "foto/giorno20-3.jpg"],
+      paragrafi: [
+        "Siamo tornati a Bilbao per l'ultima tappa: camper riconsegnato, e ci siamo fiondati subito allo stadio San Mamés per Athletic - Siviglia — partita balorda, ma bellissima l'atmosfera.",
+        "Finalmente siamo rientrati in una casa vera, ma solo per il tempo di una doccia, prima di fiondarci alla festa dell'Aste Nagusia.",
+        "Settimana di festa a Bilbao, davvero folle: la città è in strada fino alle 5-6 di mattina. Noi siamo rincasati un po' prima, che domani si torna."
+      ]
+    } },
   { n: 21, date: "2026-08-23", tappa: "Rientro a Milano",
     logistica: [
       { text: "Volo Vueling VY1454, 17:35 → 19:30 (Bilbao → Milano)", url: "https://www.flightradar24.com/data/flights/vy1454" }
