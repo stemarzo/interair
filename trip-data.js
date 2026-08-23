@@ -2,7 +2,7 @@
 // Il piano di ogni giorno viene dalle guide Notion "Viaggi" (Norvegia, camper Spagna del Nord)
 // dove esistono; altrimenti resta solo la logistica finché non si scrive il diario.
 
-const giornoCorrente = 16; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
+const giornoCorrente = 17; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
 
 const planBlocks = {
   "danzica-4ago": [
@@ -72,9 +72,10 @@ const planBlocks = {
     { nome: "Spiaggia a marea", dettaglio: "appare e scompare a seconda della marea." },
     { nome: "Festa di paese", dettaglio: "una delle più particolari e trash mai viste." }
   ],
-  "camper-19ago": [
-    { nome: "Garganta del Cares", dettaglio: "trekking Poncebos → Caín e ritorno, ~70 gallerie scavate nella roccia, sentiero largo ma con salti a precipizio — portare acqua.",
-      difficolta: "Medio-alto (lungo ma non tecnico)", tempo: "6-7 ore (~21 km a/r)", prenotazione: "no", costo: "gratis" }
+  "oviedo-19ago": [
+    { nome: "Vista sulla città", dettaglio: "posto per il camper trovato spostandosi verso ovest, con una bella vista su Oviedo." },
+    { nome: "Santa María del Naranco", dettaglio: "chiesa preromanica sulla collina." },
+    { nome: "Passeggiata in centro", dettaglio: "cattedrale di Oviedo e vie del centro — tranquillità, bambini che giocano in strada, città viva." }
   ],
   "camper-20ago": [
     { nome: "Lagos di Covadonga", dettaglio: "accesso in navetta obbligatorio dai parcheggi P1-P4 (auto/camper privato vietato).",
@@ -302,8 +303,16 @@ const days = [
         "Per concludere, una bella multa per divieto di sosta."
       ]
     } },
-  { n: 17, date: "2026-08-19", tappa: "Garganta del Cares",
-    logistica: ["Pernottamento: area camper Llerau, Cangas de Onís"], planBlock: "camper-19ago", diario: null },
+  { n: 17, date: "2026-08-19", tappa: "Oviedo (tappa aggiunta)",
+    logistica: ["Pernottamento: nei pressi di Oviedo, con vista sulla città"], planBlock: "oviedo-19ago",
+    diario: {
+      titolo: "Oviedo, una tranquilla scoperta",
+      foto: ["foto/giorno17-1.jpg", "foto/giorno17-2.jpg", "foto/giorno17-3.jpg", "foto/giorno17-4.jpg", "foto/giorno17-5.jpg", "foto/giorno17-6.jpg"],
+      paragrafi: [
+        "In corso abbiamo aggiunto una nuova tappa al nostro viaggio: Oviedo. Dopo una mattina a guidare spostandoci verso ovest, abbiamo trovato un posto dove lasciare il camper con una vista davvero bella sulla città.",
+        "Siamo poi scesi in città a passeggiare, e ci ha colpito molto la tranquillità — i bambini che giocavano in strada, e comunque una città viva. Davvero bella."
+      ]
+    } },
   { n: 18, date: "2026-08-20", tappa: "Covadonga, Ribadesella, Gijón",
     logistica: ["Pernottamento: Gijón, Parking El Rinconín"], planBlock: "camper-20ago", diario: null },
   { n: 19, date: "2026-08-21", tappa: "Gijón, Cudillero",
