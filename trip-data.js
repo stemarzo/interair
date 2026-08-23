@@ -2,7 +2,7 @@
 // Il piano di ogni giorno viene dalle guide Notion "Viaggi" (Norvegia, camper Spagna del Nord)
 // dove esistono; altrimenti resta solo la logistica finché non si scrive il diario.
 
-const giornoCorrente = 18; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
+const giornoCorrente = 19; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
 
 const planBlocks = {
   "danzica-4ago": [
@@ -83,12 +83,9 @@ const planBlocks = {
     { nome: "Guernica", dettaglio: "deciso in corsa come tappa per la notte, avvicinandosi a San Sebastián." }
   ],
   "camper-21ago": [
-    { nome: "Gijón — Cimavilla ed Elogio del Horizonte", dettaglio: "spiaggia San Lorenzo e la scultura di Chillida sulla scogliera. Da provare cachopo e pan pregnao.",
-      difficolta: "Facile", tempo: "mattina", prenotazione: "no", costo: "gratis (eventuale acquario a pagamento)" },
-    { nome: "Cudillero", dettaglio: "paesino colorato di pescatori.",
-      difficolta: "Facile", tempo: "~45 min da Gijón", prenotazione: "no", costo: "gratis" },
-    { nome: "Opzione — Santoña, Faro del Caballo", dettaglio: "percorso panoramico tra i più belli della costa nord, verificare quanto si discosta dal rientro.",
-      difficolta: "Facile/medio", tempo: "~2 ore", prenotazione: "no", costo: "gratis" }
+    { nome: "Museo della Pace di Guernica", dettaglio: "per capire meglio la storia dei Paesi Baschi." },
+    { nome: "Pintxos veloci", dettaglio: "prima di ripartire verso San Sebastián." },
+    { nome: "San Sebastián", dettaglio: "La Concha, l'isola di Santa Clara e il primo tramonto della vacanza." }
   ],
   "bilbao-extra": [
     { nome: "San Juan de Gaztelugatxe", dettaglio: "la \"Roccia del Drago\", location di Game of Thrones, vicino Bakio.",
@@ -318,8 +315,17 @@ const days = [
         "Abbiamo poi deciso in corsa di andare a dormire a Guernica, avvicinandoci ancora di più a San Sebastián."
       ]
     } },
-  { n: 19, date: "2026-08-21", tappa: "Gijón, Cudillero",
-    logistica: ["Pernottamento: zona Santander/Castro Urdiales"], planBlock: "camper-21ago", diario: null },
+  { n: 19, date: "2026-08-21", tappa: "Guernica → San Sebastián",
+    logistica: ["Pernottamento: San Sebastián"], planBlock: "camper-21ago",
+    diario: {
+      titolo: "Verso il tramonto",
+      foto: ["foto/giorno19-1.jpg", "foto/giorno19-2.jpg", "foto/giorno19-3.jpg", "foto/giorno19-4.jpg", "foto/giorno19-5.jpg"],
+      paragrafi: [
+        "Dopo un viaggio notturno fino a Guernica, ci svegliamo per una tappa culturale: molto bello il Museo della Pace, che fa capire meglio la storia dei Paesi Baschi.",
+        "Il tempo di mangiare due pintxos e via subito verso una delle ultime tappe, San Sebastián — finora la città che mi è piaciuta di più, in linea con le altre ma davvero bella.",
+        "Qui abbiamo visto anche il primo tramonto della vacanza, anche se un po' sporcato dalle nuvolette ahaha."
+      ]
+    } },
   { n: 20, date: "2026-08-22", tappa: "Riconsegna camper, Bilbao",
     logistica: ["Riconsegna camper a Zamudio, ore 12:00 — già prenotato (Roadsurfer)", "Alloggio: Bilbao (ultima notte)"], planBlock: "bilbao-extra", diario: null },
   { n: 21, date: "2026-08-23", tappa: "Rientro a Milano",
