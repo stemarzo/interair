@@ -2,7 +2,7 @@
 // Il piano di ogni giorno viene dalle guide Notion "Viaggi" (Norvegia, camper Spagna del Nord)
 // dove esistono; altrimenti resta solo la logistica finché non si scrive il diario.
 
-const giornoCorrente = 17; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
+const giornoCorrente = 18; // ultimo giorno "sbloccato" nel Diario — aggiornare su richiesta esplicita dell'utente, un giorno alla volta
 
 const planBlocks = {
   "danzica-4ago": [
@@ -78,15 +78,9 @@ const planBlocks = {
     { nome: "Passeggiata in centro", dettaglio: "cattedrale di Oviedo e vie del centro — tranquillità, bambini che giocano in strada, città viva." }
   ],
   "camper-20ago": [
-    { nome: "Lagos di Covadonga", dettaglio: "accesso in navetta obbligatorio dai parcheggi P1-P4 (auto/camper privato vietato).",
-      difficolta: "Facile", tempo: "mattina", prenotazione: "biglietti ai parcheggi o su alsa.es",
-      costo: "parcheggio 3€/auto + biglietto bus" },
-    { nome: "Alternativa — Descenso del Sella in canoa", dettaglio: "discesa del fiume Sella da Arriondas fino a Ribadesella/Toves, soste ai bar lungo il percorso.",
-      difficolta: "Facile/medio", tempo: "2-3 ore", prenotazione: "consigliata in anticipo" },
-    { nome: "Ribadesella", dettaglio: "centro, ponte, spiaggia — sulla strada verso Gijón.",
-      difficolta: "Facile", tempo: "1 ora", prenotazione: "no", costo: "gratis" },
-    { nome: "Gijón di sera — Cimavilla", dettaglio: "quartiere storico + passeggiata sul lungomare di San Lorenzo.",
-      difficolta: "Facile", prenotazione: "no", costo: "gratis" }
+    { nome: "Gijón", dettaglio: "spiaggia di San Lorenzo, sotto la pioggia — piaciuta meno delle altre tappe, forse anche per il meteo." },
+    { nome: "Comillas — El Capricho di Gaudí", dettaglio: "recuperato tornando verso levante, cittadina niente male." },
+    { nome: "Guernica", dettaglio: "deciso in corsa come tappa per la notte, avvicinandosi a San Sebastián." }
   ],
   "camper-21ago": [
     { nome: "Gijón — Cimavilla ed Elogio del Horizonte", dettaglio: "spiaggia San Lorenzo e la scultura di Chillida sulla scogliera. Da provare cachopo e pan pregnao.",
@@ -313,8 +307,17 @@ const days = [
         "Siamo poi scesi in città a passeggiare, e ci ha colpito molto la tranquillità — i bambini che giocavano in strada, e comunque una città viva. Davvero bella."
       ]
     } },
-  { n: 18, date: "2026-08-20", tappa: "Covadonga, Ribadesella, Gijón",
-    logistica: ["Pernottamento: Gijón, Parking El Rinconín"], planBlock: "camper-20ago", diario: null },
+  { n: 18, date: "2026-08-20", tappa: "Gijón → Comillas → Guernica",
+    logistica: ["Pernottamento: Guernica"], planBlock: "camper-20ago",
+    diario: {
+      titolo: "Il capriccioso",
+      foto: ["foto/giorno18-1.jpg", "foto/giorno18-2.jpg", "foto/giorno18-3.jpg", "foto/giorno18-4.jpg"],
+      paragrafi: [
+        "Giorno piovoso, ma ormai ci siamo abituati. Il piano ha previsto una visita a Gijón, che mi è piaciuta meno rispetto alle altre, forse anche a causa del meteo.",
+        "Poi abbiamo iniziato a tornare verso levante, recuperando il Capriccio di Gaudí a Comillas — cittadina niente male.",
+        "Abbiamo poi deciso in corsa di andare a dormire a Guernica, avvicinandoci ancora di più a San Sebastián."
+      ]
+    } },
   { n: 19, date: "2026-08-21", tappa: "Gijón, Cudillero",
     logistica: ["Pernottamento: zona Santander/Castro Urdiales"], planBlock: "camper-21ago", diario: null },
   { n: 20, date: "2026-08-22", tappa: "Riconsegna camper, Bilbao",
